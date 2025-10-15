@@ -393,10 +393,8 @@ import { number } from 'astro:schema';
 		.to("#loading-screen", { duration: 0.3, opacity: 0 })
 		.to("#loading-screen", { duration: 0.3, opacity: 1 })
 		.to("#loading-screen", { duration: 0.3, opacity: 0 })
-		.to("#loading-screen", { duration: 0.3, opacity: 1 })
-		.to("#loading-screen", { duration: 0.3, opacity: 0 })
-		.to("#start-screen-text", { duration: 0.3, text: "ready", ease: "none", delay: 1 })
-		.to("#start-screen", { duration: 0.3, opacity: 0, delay: 1 })
+		.to("#start-screen-text", { duration: 0.3, text: "ready", ease: "none", delay: 0.5 })
+		.to("#start-screen", { duration: 0.3, opacity: 0, delay: 0.5 })
 		.to("#loading-bg", { duration: 1, delay: 1, opacity: 0 })
 		.add(() => {
 			document.querySelector("#loading-screen")?.classList.add("hidden");
