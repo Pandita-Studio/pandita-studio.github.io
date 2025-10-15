@@ -26,69 +26,8 @@ import CharactersScreenshot from "@assets/characters_screenshot.png"
 import CustomScreenshot from "@assets/custom_screenshot.png"
 
 import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro" 
+import BgDiv from "@components/BgDiv.astro"
 ---
-
-<style define:vars={{
-		abstractBackground: `url(${AbstractBackground.src})`,
-		porcelanaBackground: `url(${PorcelanaBackground.src})`,
-		rockstarIdolBackground: `url(${RockstarIdolBackground.src})`,
-		rockstarIdolEBackground: `url(${RockstarIdolEBackground.src})`,
-		tanyaBg: `url(${TanyaBg.src})`
-	}}>
-
-	@import url('https://fonts.googleapis.com/css2?family=Orbitron&family=Press+Start+2P&display=swap');
-
-	.abstract-1 {
-		background-image: var(--abstractBackground);
-		background-size: cover;
-		background-position: center;
-	}
-
-	.porcelana-bg {
-		background-image: var(--porcelanaBackground);
-		background-size: cover;
-		background-position: center;
-	}
-
-	.rockstar-idol-bg {
-		background-image: var(--rockstarIdolBackground);
-		background-size: cover;
-		background-position: center;
-	}
-
-	.rockstar-idol-e-bg {
-		background-image: var(--rockstarIdolEBackground);
-		background-size: cover;
-		background-position: center;
-	}
-
-	.tanya-bg {
-		background-image: var(--tanyaBg);
-		background-size: cover;
-		background-position: left;
-	}
-
-
-	.orbitron-regular {
-		font-family: "Orbitron", sans-serif;
-		font-optical-sizing: auto;
-		font-weight: 400;
-		font-style: normal;
-	}
-
-	.orbitron-bold {
-		font-family: "Orbitron", sans-serif;
-		font-optical-sizing: auto;
-		font-weight: 700;
-		font-style: normal;
-	}
-
-	.press-start-2p-regular {
-		font-family: "Press Start 2P", system-ui;
-		font-weight: 400;
-		font-style: normal;
-	}
-</style>
 
 <Main>
 	<div class="h-screen w-screen fixed top-0 opacity-0 z-40" id="loading-screen">
@@ -113,16 +52,16 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro"
 			<div id="home"></div>
 
 			<div class="h-screen w-screen" id="about-screen">
-				<div class="w-full h-full flex items-center justify-center orbitron regular abstract-1">
+				<BgDiv backgroundSrc={AbstractBackground.src} className="w-full h-full flex items-center justify-center orbitron regular">
 					<p class="bg-white shadow-[0px_0px_20px_20px_#ffffff] p-4 text-center lg:text-left" id="about-screen-text">
 						We are a Mexican video-games studio creating unique anime-inspired games that blend storytelling, style, and passion.
 					</p>
-				</div>
+				</BgDiv>
 			</div>
 
 			<div id="games" scroll-offset="-500"></div>
 
-			<div class="h-screen w-screen bg-[#69bcff] porcelana-bg" id="game-1">
+			<BgDiv backgroundSrc={PorcelanaBackground.src} className="h-screen w-screen bg-[#69bcff]" id="game-1">
 				<div class="w-full h-full flex flex-row justify-center items-end lg:items-center shadow-[inset_0px_-50px_100px_-9px_rgba(0,0,0,0.5)]">
 					<div class="lg:grid grid-cols-2 grid-rows-1 gap-4 w-full">
 						<div>
@@ -167,9 +106,9 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro"
 						</div>
 					</div>
 				</div>
-			</div>
+			</BgDiv>
 
-			<div class="h-screen w-screen bg-indigo-200 rockstar-idol-bg overflow-clip" id="game-2">
+			<BgDiv backgroundSrc={RockstarIdolBackground.src} className="h-screen w-screen bg-indigo-200 overflow-clip" id="game-2">
 				<div class="w-full h-full flex flex-row justify-center items-end lg:items-center shadow-[inset_0px_-50px_100px_-9px_rgba(0,0,0,0.5)]">
 					<div class="lg:grid grid-cols-2 grid-rows-1 gap-4 w-full">
 
@@ -203,9 +142,9 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro"
 
 					</div>
 				</div>
-			</div>
+			</BgDiv>
 
-			<div class="h-screen w-screen bg-amber-200 rockstar-idol-e-bg overflow-clip" id="game-3">
+			<BgDiv backgroundSrc={RockstarIdolEBackground.src} className="h-screen w-screen bg-amber-200 overflow-clip" id="game-3">
 				<div class="w-full h-full flex flex-row justify-center items-end lg:items-center shadow-[inset_0px_-50px_100px_-9px_rgba(0,0,0,0.5)]">
 					<div class="lg:grid grid-cols-2 grid-rows-1 gap-4 w-full">
 
@@ -240,9 +179,9 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro"
 
 					</div>
 				</div>
-			</div>
+			</BgDiv>
 
-			<div class="h-screen w-screen bg-blue-300 tanya-bg overflow-clip shadow-[0px_9px_68px_0px_#616161]" id="game-4">
+			<BgDiv backgroundSrc={TanyaBg.src} className="h-screen w-screen bg-blue-300 overflow-clip shadow-[0px_9px_68px_0px_#616161]" id="game-4">
 				<div class="w-full h-full flex flex-row justify-center items-end shadow-[inset_0px_-50px_100px_-9px_rgba(0,0,0,0.5)]">
 					<div class="opacity-0 z-20 pb-8 lg:pb-24 max-lg:pt-8" id="game-4-logo">
 						<div class="w-full flex justify-center">
@@ -272,7 +211,7 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro"
 						</div>
 					</div>
 				</div>
-			</div>
+			</BgDiv>
 
 			<div id="services"></div>
 

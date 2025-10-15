@@ -1,0 +1,15 @@
+---
+const {backgroundSrc, className, id, ...rest} = Astro.props
+---
+
+<style define:vars={{ backgroundSrc: `url(${backgroundSrc})` }}>
+    .bg-div {
+        background-image: var(--backgroundSrc);
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+<div class=`${className} bg-div` id={id} {...rest}>
+    <slot />
+</div>

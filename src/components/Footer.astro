@@ -1,25 +1,9 @@
 ---
+import BgDiv from "./BgDiv.astro"
 import Background from "@assets/abstract_background_black.jpg"
 ---
 
-<style define:vars={{ backgroundSrc: `url(${Background.src})` }}>
-	@import url('https://fonts.googleapis.com/css2?family=Orbitron&family=Press+Start+2P&display=swap');
-
-	.background {
-		background-image: var(--backgroundSrc);
-		background-position: bottom;
-		background-size: cover;
-	}
-
-	.orbitron-regular {
-		font-family: "Orbitron", sans-serif;
-		font-optical-sizing: auto;
-		font-weight: 400;
-		font-style: normal;
-	}
-</style>
-
-<footer class="w-full min-h-screen bg-black text-white background tracking-widest">
+<BgDiv backgroundSrc={Background.src} className="w-full min-h-screen bg-black text-white tracking-widest">
 	<div class="p-4 pt-32">
 		&copy; Pandita Videogames Studio S.A.S. de C.V.
 	</div>
@@ -70,4 +54,4 @@ import Background from "@assets/abstract_background_black.jpg"
 			</div>
 		</div>
 	</div>
-</footer>
+</BgDiv>
