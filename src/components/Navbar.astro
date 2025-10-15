@@ -26,7 +26,9 @@ import PanditaLogoLight from "@assets/pandita_logo_light.png";
 		</div>
 
 		<div class="flex justify-center items-center basis-2/4">
-			<p class="tracking-[.5rem] text-xs lg:text-lg">PANDITA<span class="hidden lg:contents"> STUDIO</span></p>
+			<p class="tracking-[.5rem] text-xs lg:text-lg">
+				PANDITA<span class="hidden lg:contents"> STUDIO</span>
+			</p>
 		</div>
 
 		<div class="flex items-center justify-center basis-1/4">
@@ -52,13 +54,13 @@ import PanditaLogoLight from "@assets/pandita_logo_light.png";
 </nav>
 
 <script>
-	let navbar = document.getElementById('navbar');
+	let navbar = document.getElementById("navbar");
 
-	window.addEventListener('scroll', () => {
-	if (window.scrollY > 50) {
-		navbar?.classList.add('dark');
-	} else {
-		navbar?.classList.remove('dark');
-	}
+	window.addEventListener("scroll", () => {
+		if (window.scrollY > 50) {
+			navbar?.classList.add("dark");
+		} else {
+			navbar?.classList.remove("dark");
+		}
 	});
 </script>
