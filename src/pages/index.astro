@@ -279,7 +279,6 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro"
 	import ScrollTrigger from 'gsap/ScrollTrigger';
 	import TextPluging from 'gsap/TextPlugin';
 	import ScrollToPlugin from 'gsap/ScrollToPlugin';
-import { number } from 'astro:schema';
 
 	gsap.registerPlugin(ScrollSmoother, ScrollTrigger, TextPluging, ScrollToPlugin);
 
@@ -297,7 +296,6 @@ import { number } from 'astro:schema';
 		normalizeScroll: true
 	});
 
-	// helper for smooth scrolling to current hash
 	function scrollToHash(hash: string) {
 		if (!hash) return;
 			const target = document.querySelector(hash);
@@ -305,19 +303,14 @@ import { number } from 'astro:schema';
 
 		const offset = target.getAttribute("scroll-offset");
 
-		// Smoothly scroll using ScrollSmoother
 		gsap.to(window, { duration: 2, scrollTo: { y: hash, offsetY: offset != null ? Number(offset) : 50 } })
-
-		// Refresh ScrollTrigger after scroll to ensure everything lines up
 		ScrollTrigger.refresh();
 	}
 
-	// handle hash changes
 	window.addEventListener("hashchange", () => {
 		scrollToHash(window.location.hash);
 	});
 
-	// also handle initial load (if URL already has a hash)
 	window.addEventListener("load", () => {
 		if (window.location.hash) {
 			setTimeout(() => scrollToHash(window.location.hash), 100);
