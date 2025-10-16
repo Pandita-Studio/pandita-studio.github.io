@@ -1,6 +1,8 @@
 ---
 import PanditaLogoDark from "@assets/pandita_logo_dark.png";
 import PanditaLogoLight from "@assets/pandita_logo_light.png";
+
+const autoFade = Astro.props.autoFade ?? true;
 ---
 
 <nav
@@ -32,7 +34,6 @@ import PanditaLogoLight from "@assets/pandita_logo_light.png";
 		</div>
 
 		<div class="flex items-center justify-center basis-1/4">
-			<!-- From Uiverse.io by Shubh0408 -->
 			<div
 				class="group relative flex size-10 items-center justify-center gap-1 hover:cursor-pointer"
 			>
@@ -53,7 +54,7 @@ import PanditaLogoLight from "@assets/pandita_logo_light.png";
 	</div>
 </nav>
 
-<script>
+<script define:vars={{ autoFade: autoFade }}>
 	let navbar = document.getElementById("navbar");
 
 	window.addEventListener("scroll", () => {
@@ -63,4 +64,10 @@ import PanditaLogoLight from "@assets/pandita_logo_light.png";
 			navbar?.classList.remove("dark");
 		}
 	});
+
+	if (autoFade) {
+		setTimeout(() => {
+			document.querySelector("#navbar").classList.remove("opacity-0");
+		}, 1000);
+	}
 </script>
