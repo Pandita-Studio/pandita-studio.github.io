@@ -134,7 +134,6 @@ import Background from "@assets/abstract_background.jpg";
 			document.querySelector("#submit-label")?.classList.add("hidden");
 			await fetch(url, {
 				method: "POST",
-				redirect: "follow",
 				body: formData,
 			});
 			document.querySelector("#submit-label")?.classList.remove("hidden");
