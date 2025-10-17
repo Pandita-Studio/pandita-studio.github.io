@@ -9,7 +9,7 @@ const autoFade = Astro.props.autoFade ?? true;
 
 <nav
 	id="navbar"
-	class="fixed top-0 w-screen h-20 dark:h-16 bg-transparent dark:bg-black text-black dark:text-white z-10 opacity-0 transition-all duration-1000"
+	class="fixed top-0 w-screen h-20 dark:h-16 bg-transparent dark:bg-black text-black dark:text-white z-10 opacity-0 transition-all duration-300"
 >
 	<div
 		class="flex flex-row justify-center items-center flex-nowrap gap-4 h-full"
@@ -134,9 +134,8 @@ const autoFade = Astro.props.autoFade ?? true;
 	});
 
 	if (autoFade) {
-		setTimeout(() => {
-			document.querySelector("#navbar").classList.remove("opacity-0");
-		}, 1000);
+		document.querySelector("#navbar").classList.remove("transition-all");
+		document.querySelector("#navbar").classList.remove("opacity-0");
 	}
 
 	let popup = document.querySelector("#popup");
