@@ -1,12 +1,48 @@
 ---
 import "@styles/global.css";
+import { SEO } from "astro-seo";
 
 const title = Astro.props.title ?? "Pandita | Videogames Studio";
+const description =
+	Astro.props.description ??
+	"Mexican indie game studio creating anime-inspired video games with unique storytelling, artistic style, and heartfelt passion.";
+const type = Astro.props.type ?? "website";
+const image = Astro.props.image ?? "/pandita.png";
+const creator = Astro.props.creator ?? "@panditastudio";
 ---
 
 <!doctype html>
 <html lang="en" data-theme="light">
 	<head>
+		<SEO
+			title={title}
+			description={description}
+			openGraph={{
+				basic: {
+					title: title,
+					type: type,
+					image: image,
+				},
+			}}
+			twitter={{
+				creator: creator,
+			}}
+			extend={{
+				link: [{ rel: "icon", href: "/favicon.png" }],
+				meta: [
+					{
+						name: "twitter:image",
+						content:
+							image,
+					},
+					{
+						name: "twitter:title",
+						content: title,
+					},
+					{ name: "twitter:description", content: "Agent" },
+				],
+			}}
+		/>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -46,5 +82,10 @@ const title = Astro.props.title ?? "Pandita | Videogames Studio";
 		font-family: "Press Start 2P", system-ui;
 		font-weight: 400;
 		font-style: normal;
+	}
+
+	.yt-iframe {
+		aspect-ratio: 16 / 9;
+		width: 100% !important;
 	}
 </style>

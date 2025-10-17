@@ -2,8 +2,9 @@
 import Main from "@layouts/Main.astro";
 import Navbar from "@components/Navbar.astro";
 import Footer from "@components/Footer.astro";
+import Prose from "@components/Prose.astro";
 
-import { getCollection, render } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("blog");
@@ -15,19 +16,98 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const author = await getEntry(post.data.author);
 ---
 
 <Main>
 	<Navbar />
 
-	<div class="w-screen min-h-screen pt-30">
-		<div class="w-full flex items-center justify-center">
-			<div class="max-w-4xl">
-				<div class="text-2xl font-bold">
+	<div class="w-screen min-h-screen py-30 px-4 lg:px-20">
+		<div class="w-full flex flex-col items-center justify-center">
+			<div class="w-full max-w-prose">
+				<div class="w-full">
+					<img
+						src={post.data.image}
+						alt={`${post.data.title} cover image.`}
+						class="w-full rounded object-cover"
+					/>
+				</div>
+				<div class="w-full text-4xl font-bold mt-10">
 					{post.data.title}
 				</div>
-				<div class="mt-5 space-y-4">
-					<Content />
+				<div class="mt-5 w-full text-gray-400">
+					{post.data.publishDate.toDateString()}, written by {author.data.name}
+				</div>
+				<div class="w-full mt-10 space-y-4">
+					<Prose>
+						<Content />
+					</Prose>
+				</div>
+			</div>
+
+			<div class="w-full max-w-prose lg:flex items-center justify-center my-10 gap-4">
+				<div class="flex-1/2">
+					{
+						async () => {
+							if (post.data.prev) {
+								const entry = await getEntry("blog", post.data.prev);
+
+								if (!entry) return;
+
+								return (
+									<div class="w-full flex flex-col">
+										<div class="text-sm text-pink-300">Prev</div>
+										<a class="text-pink-500 hover:underline" href={`/blog/p/${entry.slug}`}>
+											← {entry.data.title}
+										</a>
+									</div>
+								)
+							}
+						}
+					}
+				</div>
+				<div class="flex-1/2">
+					{
+						async () => {
+							if (post.data.next) {
+								const entry = await getEntry("blog", post.data.next);
+
+								if (!entry) return;
+
+								return(
+									<div class="w-full flex flex-col mt-4 lg:mt-0 lg:items-end">
+										<div class="text-sm text-pink-300">Next</div>
+										<a class="text-pink-500 hover:underline" href={`/blog/p/${entry.slug}`}>
+											{entry.data.title} →
+										</a>
+									</div>
+								)
+							}
+						}
+					}
+				</div>
+			</div>
+
+			<div class="w-full max-w-prose mt-10">
+				<!-- Elfsight Facebook Like Button | Untitled Facebook Like Button -->
+				<script src="https://elfsightcdn.com/platform.js" async
+				></script>
+				<div
+					class="elfsight-app-891ba03d-9f00-4085-9f17-ee36512abfe9"
+					data-elfsight-app-lazy
+				>
+				</div>
+			</div>
+
+			<div class="w-full max-w-prose mt-10">
+				<!-- Elfsight Comments | Untitled Comments -->
+				<script src="https://elfsightcdn.com/platform.js" async
+				></script>
+				<div
+					class="elfsight-app-e3aa2967-ab17-499f-b803-a25731a6da37"
+					data-elfsight-app-lazy
+				>
 				</div>
 			</div>
 		</div>
