@@ -20,7 +20,12 @@ const { Content } = await render(post);
 const author = await getEntry(post.data.author);
 ---
 
-<Main>
+<Main
+	title={post.data.title}
+	description={post.data.excerpt}
+	image={post.data.image}
+	creator={`@${author.id}`}
+>
 	<Navbar />
 
 	<div class="w-screen min-h-screen py-30 px-4 lg:px-20">
@@ -37,7 +42,9 @@ const author = await getEntry(post.data.author);
 					{post.data.title}
 				</div>
 				<div class="mt-5 w-full text-gray-400">
-					{post.data.publishDate.toDateString()}, written by {author.data.name}
+					{post.data.publishDate.toDateString()}, written by {
+						author.data.name
+					}
 				</div>
 				<div class="w-full mt-10 space-y-4">
 					<Prose>
@@ -46,23 +53,33 @@ const author = await getEntry(post.data.author);
 				</div>
 			</div>
 
-			<div class="w-full max-w-prose lg:flex items-center justify-center my-10 gap-4">
+			<div
+				class="w-full max-w-prose lg:flex items-center justify-center my-10 gap-4"
+			>
 				<div class="flex-1/2">
 					{
 						async () => {
 							if (post.data.prev) {
-								const entry = await getEntry("blog", post.data.prev);
+								const entry = await getEntry(
+									"blog",
+									post.data.prev,
+								);
 
 								if (!entry) return;
 
 								return (
 									<div class="w-full flex flex-col">
-										<div class="text-sm text-pink-300">Prev</div>
-										<a class="text-pink-500 hover:underline" href={`/blog/p/${entry.slug}`}>
+										<div class="text-sm text-pink-300">
+											Prev
+										</div>
+										<a
+											class="text-pink-500 hover:underline"
+											href={`/blog/p/${entry.slug}`}
+										>
 											← {entry.data.title}
 										</a>
 									</div>
-								)
+								);
 							}
 						}
 					}
@@ -71,18 +88,26 @@ const author = await getEntry(post.data.author);
 					{
 						async () => {
 							if (post.data.next) {
-								const entry = await getEntry("blog", post.data.next);
+								const entry = await getEntry(
+									"blog",
+									post.data.next,
+								);
 
 								if (!entry) return;
 
-								return(
+								return (
 									<div class="w-full flex flex-col mt-4 lg:mt-0 lg:items-end">
-										<div class="text-sm text-pink-300">Next</div>
-										<a class="text-pink-500 hover:underline" href={`/blog/p/${entry.slug}`}>
+										<div class="text-sm text-pink-300">
+											Next
+										</div>
+										<a
+											class="text-pink-500 hover:underline"
+											href={`/blog/p/${entry.slug}`}
+										>
 											{entry.data.title} →
 										</a>
 									</div>
-								)
+								);
 							}
 						}
 					}
