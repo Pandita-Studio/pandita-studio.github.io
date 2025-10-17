@@ -1,7 +1,32 @@
 ---
-import Main from "@layouts/Main.astro"
+import Main from "@layouts/Main.astro";
+import Navbar from "@components/Navbar.astro";
+import Footer from "@components/Footer.astro";
+
+import { getCollection, getEntry } from "astro:content";
+
+const blogPosts = await getCollection("blog");
 ---
 
 <Main>
-	<div>Blog</div>
+	<Navbar />
+
+	<div class="w-screen min-h-screen pt-30">
+		<ul>
+			{
+				blogPosts.map(async (post) => {
+					const author = await getEntry(post.data.author);
+					return (
+						<li>
+							<a href={`/blog/p/${post.slug}`}>
+								{post.data.title} - {author.data.name}
+							</a>
+						</li>
+					);
+				})
+			}
+		</ul>
+	</div>
+
+	<Footer />
 </Main>
