@@ -5,46 +5,44 @@ const { postSlug } = Astro.props;
 const post = await getEntry("blog", postSlug);
 
 if (!post) {
-    throw new Error(`Could not find blog post ${postSlug}`);
+	throw new Error(`Could not find blog post ${postSlug}`);
 }
 
 const author = await getEntry(post.data.author);
 ---
 
 <div class="w-full min-md:flex flex-row gap-4 max-lg:mb-10">
-    <img
-        src={post.data.image}
-        alt={`${post.data.title} cover image.`}
-        class="w-full min-md:max-w-3xs rounded object-cover aspect-video"
-    />
+	<img
+		src={post.data.image}
+		alt={`${post.data.title} cover image.`}
+		class="w-full min-md:max-w-3xs rounded object-cover aspect-video"
+	/>
 
-    <div class="flex flex-col gap-2">
+	<div class="flex flex-col gap-2">
+		<div>
+			<div class="text-lg font-bold">
+				{post.data.title}
+			</div>
+			<div class="text-gray-400 text-sm">
+				{post.data.publishDate.toDateString()} - <a
+					href={`/author/${author.data.name}/1`} class="hover:text-pink-500 transition-colors duration-300">{author.data.name}</a
+				>
+			</div>
+		</div>
 
-        <div>
-            <div class="text-lg font-bold">
-                {post.data.title}
-            </div>
-            <div class="text-gray-400 text-sm">
-                {post.data.publishDate.toDateString()} - {
-                    author?.data.name ?? 'anon'
-                }
-            </div>
-        </div>
-
-        <div>
+		<div>
 			<p class="text-gray-700 leading-relaxed">
 				{post.data.excerpt}
 			</p>
-        </div>
+		</div>
 
-        <div>
-            <a
-                href={`/blog/p/${post.slug}`}
-                class="text-pink-600 hover:underline transition-colors duration-200"
-            >
-                <i>continue reading →</i>
-            </a>
-        </div>
-
-    </div>
+		<div>
+			<a
+				href={`/blog/p/${post.slug}`}
+				class="text-pink-600 hover:underline transition-colors duration-200"
+			>
+				<i>continue reading →</i>
+			</a>
+		</div>
+	</div>
 </div>
