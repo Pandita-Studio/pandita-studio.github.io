@@ -1,0 +1,72 @@
+---
+import type { InferEntrySchema } from "astro:content";
+
+const author = Astro.props.author as InferEntrySchema<"authors">;
+---
+
+<div
+	class="max-w-xl w-full bg-black rounded-lg shadow-lg p-6 flex items-start gap-6 border border-pink-900/50"
+>
+	<div class="flex-shrink-0">
+		{
+			author.picture ? (
+				<img
+					src={author.picture}
+					alt={author.name ?? "Author"}
+					class="w-20 h-20 rounded-full object-cover border-2 border-pink-500 shadow-lg shadow-pink-500"
+				/>
+			) : (
+				<div
+					class="w-20 h-20 rounded-full bg-pink-900 flex items-center justify-center text-xl font-semibold text-pink-200"
+					aria-hidden="true"
+				>
+					{(author.name ?? "U")
+						.split(" ")
+						.map((n) => n[0])
+						.join("")
+						.slice(0, 2)}
+				</div>
+			)
+		}
+	</div>
+
+	<div class="flex-1 min-w-0">
+		<h2 class="text-xl font-semibold text-pink-400">
+			<a href={`/author/${author.name}`} class="hover:underline"
+				>{author.name}</a
+			>
+		</h2>
+
+		<p class="mt-1 text-sm text-pink-200">
+			{author.bio}
+		</p>
+
+		<div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+			{
+				author.email && (
+					<a
+						href={`mailto:${author.email}`}
+						class="px-3 py-1 bg-pink-800 rounded-full text-pink-100 hover:underline hover:bg-pink-700"
+					>
+						{author.email}
+					</a>
+				)
+			}
+
+			{
+				author.website && (
+					<a
+						href={author.website}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="px-3 py-1 bg-pink-600 rounded-full text-pink-50 hover:bg-pink-500/90 hover:underline"
+					>
+						{author.website
+							.replace(/^https?:\/\//, "")
+							.replace(/\/$/, "")}
+					</a>
+				)
+			}
+		</div>
+	</div>
+</div>

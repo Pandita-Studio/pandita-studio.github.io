@@ -1,0 +1,58 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import Main from "@layouts/Main.astro";
+import Navbar from "@components/Navbar.astro";
+import Footer from "@components/Footer.astro";
+import PostPreview from "@components/blog/PostPreview.astro";
+
+import { getCollection } from "astro:content";
+import type { InferEntrySchema } from "astro:content";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+	let authors = await getCollection("authors");
+
+	return authors.map((author) => ({
+		params: { name: author.id },
+		props: { author: author.data },
+	}));
+};
+
+const author = Astro.props.author as InferEntrySchema<"authors">;
+
+const authorPosts = (await getCollection("blog"))
+	.filter((post) => {
+		return post.data.author.id == author.name;
+	})
+	.sort(
+		(a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+	);
+---
+
+<Main>
+	<Navbar />
+
+	<div class="w-full min-h-screen mt-40 lg:mt-30">
+		<div class="w-full flex items-center justify-center">
+			<div class="w-full p-4 max-w-6xl flex flex-col gap-4">
+				<div
+					class="mb-5 orbitron-regular tracking-widest text-3xl lg:text-4xl text-center lg:text-left [text-shadow:_3px_3px_0px_rgba(5,213,255,0.5)]"
+				>
+					{author.name}
+				</div>
+
+				<div class="text-lg text-gray-400">Latest author posts.</div>
+
+				<hr class="border-gray-200 max-lg:mb-10" />
+
+				{
+					authorPosts.slice(0, 3).map((post) => {
+						return <PostPreview postSlug={post.slug} />;
+					})
+				}
+			</div>
+		</div>
+	</div>
+
+	<Footer />
+</Main>

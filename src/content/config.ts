@@ -20,7 +20,9 @@ const authors = defineCollection({
   schema: z.object({
     name: z.string().default('anon'),
     email: z.string().optional(),
-    website: z.string().url().optional()
+    website: z.string().url().optional(),
+	bio: z.string().optional(),
+	picture: z.string().optional(),
   })
 });
 

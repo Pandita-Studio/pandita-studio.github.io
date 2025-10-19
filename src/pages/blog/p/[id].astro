@@ -3,8 +3,10 @@ import Main from "@layouts/Main.astro";
 import Navbar from "@components/Navbar.astro";
 import Footer from "@components/Footer.astro";
 import Prose from "@components/Prose.astro";
+import Social from "@components/blog/Social.astro";
 
 import { getCollection, getEntry, render } from "astro:content";
+import AuthorCard from "@components/blog/AuthorCard.astro";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("blog");
@@ -42,9 +44,10 @@ const author = await getEntry(post.data.author);
 					{post.data.title}
 				</div>
 				<div class="mt-5 w-full text-gray-400">
-					{post.data.publishDate.toDateString()}, written by {
-						author.data.name
-					}
+					{post.data.publishDate.toDateString()}, written by <a
+						class="hover:underline"
+						href={`/author/${author.data.name}`}>{author.data.name}</a
+					>
 				</div>
 				<div class="w-full mt-10 space-y-4">
 					<Prose>
@@ -114,27 +117,11 @@ const author = await getEntry(post.data.author);
 				</div>
 			</div>
 
-			<div class="w-full max-w-prose mt-10">
-				<!-- Elfsight Facebook Like Button | Untitled Facebook Like Button -->
-				<script src="https://elfsightcdn.com/platform.js" async
-				></script>
-				<div
-					class="elfsight-app-891ba03d-9f00-4085-9f17-ee36512abfe9"
-					data-elfsight-app-lazy
-				>
-				</div>
+			<div class="max-w-prose">
+				<AuthorCard author={author.data} />
 			</div>
 
-			<div class="w-full max-w-prose mt-10">
-				<!-- Elfsight Comments | Untitled Comments -->
-				<script src="https://elfsightcdn.com/platform.js" async
-				></script>
-				<div
-					class="elfsight-app-e3aa2967-ab17-499f-b803-a25731a6da37"
-					data-elfsight-app-lazy
-				>
-				</div>
-			</div>
+			<Social />
 		</div>
 	</div>
 

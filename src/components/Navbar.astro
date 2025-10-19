@@ -16,22 +16,26 @@ const autoFade = Astro.props.autoFade ?? true;
 	>
 		<div class="flex shrink-0 items-center justify-center basis-1/4">
 			<div class="h-[32px] w-[32px]">
-				<img
-					src={PanditaLogoLight.src}
-					alt="Pandita Studio"
-					class="absolute h-8 w-auto"
-				/>
-				<img
-					src={PanditaLogoDark.src}
-					alt="Pandita Studio"
-					class="absolute h-8 w-auto dark:opacity-0 transition-opacity duration-1000"
-				/>
+				<a href="/#home">
+					<img
+						src={PanditaLogoLight.src}
+						alt="Pandita Studio"
+						class="absolute h-8 w-auto"
+					/>
+					<img
+						src={PanditaLogoDark.src}
+						alt="Pandita Studio"
+						class="absolute h-8 w-auto dark:opacity-0 transition-opacity duration-1000"
+					/></a
+				>
 			</div>
 		</div>
 
 		<div class="flex justify-center items-center basis-2/4">
 			<p class="tracking-[.5rem] text-xs lg:text-lg">
-				PANDITA<span class="hidden lg:contents"> STUDIO</span>
+				<a href="/#home">
+					PANDITA<span class="hidden lg:contents"> STUDIO</span>
+				</a>
 			</p>
 		</div>
 
@@ -62,7 +66,7 @@ const autoFade = Astro.props.autoFade ?? true;
 >
 	<div class="flex items-center justify-center">
 		<div
-			class="w-full max-w-4xl flex flex-col items-end justify-end p-4 gap-3"
+			class="w-full max-w-4xl flex flex-col items-end justify-end p-5 gap-3"
 		>
 			<div
 				class="close-popup w-16 h-16 flex items-center justify-center bg-white rounded-full shadow-none hover:cursor-pointer hover:bg-black hover:text-white hover:shadow-[5px_5px_0px_0px_rgba(5,213,255,0.5)] transition-all duration-300"
@@ -95,7 +99,7 @@ const autoFade = Astro.props.autoFade ?? true;
 			<div class="text-4xl">
 				<a
 					class="orbitron-regular tracking-widest text-black text-shadow-none hover:[text-shadow:_3px_3px_0px_rgba(5,213,255,0.5)] transition-all duration-300"
-					href="/blog">BLOG</a
+					href="/blog/1">BLOG</a
 				>
 			</div>
 			<div class="text-4xl">
@@ -108,14 +112,6 @@ const autoFade = Astro.props.autoFade ?? true;
 				<a
 					class="orbitron-regular tracking-widest text-black text-shadow-none hover:[text-shadow:_3px_3px_0px_rgba(5,213,255,0.5)] transition-all duration-300"
 					href="/internships">INTERNSHIPS</a
-				>
-			</div>
-			<div class="text-4xl">
-				<a
-					target="_blank"
-					class="orbitron-regular tracking-widest text-black text-shadow-none hover:[text-shadow:_3px_3px_0px_rgba(5,213,255,0.5)] transition-all duration-300"
-					href="https://drive.google.com/drive/folders/12ZLZY_I6Pcn8meuCbhOvABx6yrFy65gI?usp=sharing"
-					>PRESS</a
 				>
 			</div>
 		</div>
