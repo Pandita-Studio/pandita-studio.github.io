@@ -5,9 +5,9 @@ const author = Astro.props.author as InferEntrySchema<"authors">;
 ---
 
 <div
-	class="max-w-xl w-full bg-black rounded-lg shadow-lg p-6 flex items-start gap-6 border border-pink-900/50"
+	class="w-full bg-black rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-center gap-6 border border-pink-900/50"
 >
-	<div class="flex-shrink-0">
+	<div class="shrink-0 flex-1/4 flex items-center justify-center">
 		{
 			author.picture ? (
 				<img
@@ -30,7 +30,7 @@ const author = Astro.props.author as InferEntrySchema<"authors">;
 		}
 	</div>
 
-	<div class="flex-1 min-w-0">
+	<div class="flex-3/4 min-w-0">
 		<h2 class="text-xl font-semibold text-pink-400">
 			<a href={`/author/${author.name}`} class="hover:underline"
 				>{author.name}</a

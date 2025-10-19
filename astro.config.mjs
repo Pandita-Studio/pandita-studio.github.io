@@ -9,6 +9,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   redirects: {
-    '/blog': '/blog/1'
+    '/blog': '/blog/1',
+	'/author/[name]': '/author/[name]/1'
   }
 });

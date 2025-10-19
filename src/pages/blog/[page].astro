@@ -7,6 +7,7 @@ import Footer from "@components/Footer.astro";
 import PostPreview from "@components/blog/PostPreview.astro";
 
 import { getCollection, type CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 	let posts = (await getCollection("blog")).sort(
@@ -17,129 +18,210 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 };
 
 const { page } = Astro.props as { page: Page<CollectionEntry<"blog">> };
+
+const featured = await getEntry(
+	"blog",
+	"introducing-the-book-of-tornaluna-cats",
+);
+
+if (!featured) {
+	throw new Error(`Could not find featured blog post.`);
+}
+
+const featuredAuthor = await getEntry("authors", featured.data.author.id);
+
+if (!featuredAuthor) {
+	throw new Error(`Could not find author ${featured.data.author.id}`);
+}
 ---
 
 <Main title="Pandita | Blog">
 	<Navbar />
 
-	<div class="w-full min-h-screen mt-40 lg:mt-30">
-		<div class="w-full flex items-center justify-center">
-			<div class="w-full p-4 max-w-6xl">
-				<div class="w-full lg:flex flex-col gap-4">
-					<div
-						class="mb-5 orbitron-regular tracking-widest text-3xl lg:text-4xl text-center lg:text-left [text-shadow:_3px_3px_0px_rgba(5,213,255,0.5)]"
-					>
-						BLOG
-					</div>
+	<div class="w-full min-h-screen mt-32 lg:mt-24 mb-12">
+		<div class="w-full flex items-center justify-center px-4">
+			<div class="w-full max-w-6xl">
+				<div class="w-full flex flex-col gap-6">
+					<header class="max-w-prose">
+						<nav aria-label="Breadcrumb" class="text-sm text-gray-600">
+							<a class="hover:underline" href="/#home">Home</a>
+							<span class="mx-2">/</span>
+							<span class="font-medium">Blog</span>
+						</nav>
 
-					<hr class="border-gray-200 max-lg:mb-10">
-
-					{
-						page.data.map((post) => {
-							return <PostPreview postSlug={post.slug} />;
-						})
-					}
-
-					<div class="flex justify-start gap-2 mt-5">
-						{
-							() => {
-								if (page.currentPage != 1) {
-									return (
-										<a
-											href="/blog/1"
-											class="px-3 py-1 rounded border hover:border-pink-500 transition-colors duration-300 bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-										>
-											first
-										</a>
-									);
-								}
-							}
-						}
-
-						{
-							() => {
-								if (page.url.prev)
-									return (
-										<a
-											href={page.url.prev}
-											class="px-3 py-1 rounded border hover:border-pink-500 transition-colors duration-300 bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-										>
-											←
-										</a>
-									);
-							}
-						}
-
-						{
-							(() => {
-								const buttons = [];
-								const start = Math.max(1, page.currentPage - 1);
-								const end =
-									Math.min(
-										page.lastPage,
-										page.currentPage + 3,
-									) + 1;
-
-								for (let i = start; i < end; i++) {
-									const href = `/blog/${i}/`;
-									const isActive = i === page.currentPage;
-
-									buttons.push(
-										<a
-											href={href}
-											class={`px-3 py-1 rounded border hover:border-pink-500 transition-colors duration-300 ${
-												isActive
-													? "bg-pink-500 text-white border-pink-500"
-													: "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-											}`}
-										>
-											{i}
-										</a>,
-									);
-								}
-
-								return buttons;
-							})()
-						}
-
-						{
-							() => {
-								if (page.url.next)
-									return (
-										<a
-											href={page.url.next}
-											class="px-3 py-1 rounded border hover:border-pink-500 transition-colors duration-300 bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-										>
-											→
-										</a>
-									);
-							}
-						}
-
-						{
-							() => {
-								if (page.lastPage > 3) {
-									return (
-										<a
-											href={`/blog/${page.lastPage}`}
-											class="px-3 py-1 rounded border hover:border-pink-500 transition-colors duration-300 bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-										>
-											last
-										</a>
-									);
-								}
-							}
-						}
-					</div>
-
-					<div class="text-gray-400">
-						<i
-							>Page {page.currentPage} of {page.lastPage} - viewing
-							{page.size} of {page.total} posts.</i
+						<h1
+							class="mt-5 mb-5 orbitron-regular tracking-widest text-3xl lg:text-4xl text-center lg:text-left"
 						>
-					</div>
+							BLOG
+						</h1>
 
-					<hr class="border-gray-200">
+						<p class="text-gray-700 leading-relaxed text-lg">
+							Explore behind-the-scenes stories, art, and development insights from Pandita Studio — a studio creating anime-inspired, story-driven games with heart. 💖
+						</p>
+					</header>
+
+					<section>
+						<h2 class="mt-6 font-bold text-2xl">Featured</h2>
+						<hr class="border-gray-200 my-4" />
+
+						<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+							<div class="w-full">
+								<img
+									src={featured.data.image}
+									alt={`${featured.data.title} cover image`}
+									class="w-full rounded object-cover aspect-video"
+								/>
+							</div>
+
+							<div class="flex flex-col gap-3">
+								<h3 class="text-2xl font-bold">{featured.data.title}</h3>
+
+								<div class="flex gap-3 items-center mt-1">
+									<img
+										src={featuredAuthor.data.picture}
+										alt={`${featuredAuthor.data.name} avatar`}
+										class="w-10 h-10 rounded-full object-cover"
+									/>
+									<div class="text-sm">
+										<a
+											href={`/author/${featuredAuthor.data.name}`}
+											class="font-medium hover:underline"
+										>
+											{featuredAuthor.data.name}
+										</a>
+										<span class="mx-2 text-gray-400">·</span>
+										<span class="text-gray-500">
+											{featured.data.publishDate.toDateString()}
+										</span>
+									</div>
+								</div>
+
+								<p class="text-gray-700 leading-relaxed">
+									{featured.data.excerpt}
+								</p>
+
+								<div>
+									<a
+										href={`/blog/p/${featured.slug}`}
+										class="text-pink-600 hover:underline transition-colors duration-200"
+									>
+										continue reading →
+									</a>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<h2 class="mt-8 font-bold text-2xl">Latest</h2>
+						<hr class="border-gray-200 my-4" />
+
+						<div class="w-full grid gap-6">
+							{
+								page.data.map((post) => {
+									return <PostPreview postSlug={post.slug} />;
+								})
+							}
+						</div>
+
+						<nav class="flex flex-wrap items-center gap-2 mt-6" aria-label="Pagination">
+							{
+								() => {
+									if (page.currentPage != 1) {
+										return (
+											<a
+												href="/blog/1"
+												class="px-3 py-1 rounded border transition-colors duration-200 bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+											>
+												First
+											</a>
+										);
+									}
+								}
+							}
+
+							{
+								() => {
+									if (page.url.prev)
+										return (
+											<a
+												href={page.url.prev}
+												class="px-3 py-1 rounded border transition-colors duration-200 bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+											>
+												Previous
+											</a>
+										);
+								}
+							}
+
+							{
+								(() => {
+									const buttons = [];
+									const start = Math.max(1, page.currentPage - 1);
+									const end =
+										Math.min(
+											page.lastPage,
+											page.currentPage + 3,
+										) + 1;
+
+									for (let i = start; i < end; i++) {
+										const href = `/blog/${i}/`;
+										const isActive = i === page.currentPage;
+
+										buttons.push(
+											<a
+												href={href}
+												class={`px-3 py-1 rounded border transition-colors duration-200 ${
+													isActive
+														? "bg-pink-500 text-white border-pink-500"
+														: "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+												}`}
+											>
+												{i}
+											</a>,
+										);
+									}
+
+									return buttons;
+								})()
+							}
+
+							{
+								() => {
+									if (page.url.next)
+										return (
+											<a
+												href={page.url.next}
+												class="px-3 py-1 rounded border transition-colors duration-200 bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+											>
+												Next
+											</a>
+										);
+								}
+							}
+
+							{
+								() => {
+									if (page.lastPage > 3) {
+										return (
+											<a
+												href={`/blog/${page.lastPage}`}
+												class="px-3 py-1 rounded border transition-colors duration-200 bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+											>
+												Last
+											</a>
+										);
+									}
+								}
+							}
+						</nav>
+
+						<div class="text-gray-400 mt-3 text-sm">
+							<i>Page {page.currentPage} of {page.lastPage} - viewing {page.size} of {page.total} posts.</i>
+						</div>
+
+						<hr class="border-gray-200 mt-6" />
+					</section>
 				</div>
 			</div>
 		</div>

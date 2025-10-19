@@ -32,13 +32,15 @@ const author = await getEntry(post.data.author);
         </div>
 
         <div>
-            {post.data.excerpt}
+			<p class="text-gray-700 leading-relaxed">
+				{post.data.excerpt}
+			</p>
         </div>
 
         <div>
             <a
                 href={`/blog/p/${post.slug}`}
-                class="hover:[text-shadow:_3px_3px_0px_rgba(255,5,155,0.5)] transition-all duration-300"
+                class="text-pink-600 hover:underline transition-colors duration-200"
             >
                 <i>continue reading →</i>
             </a>

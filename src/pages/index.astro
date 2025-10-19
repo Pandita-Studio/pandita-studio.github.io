@@ -30,10 +30,7 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 ---
 
 <Main>
-	<div
-		class="h-screen w-full fixed top-0 opacity-0 z-40"
-		id="loading-screen"
-	>
+	<div class="h-screen w-full fixed top-0 opacity-0 z-40" id="loading-screen">
 		<div class="w-full h-full flex items-center justify-center">
 			<p
 				class="orbitron-regular text-2xl tracking-[.5rem] [text-shadow:_3px_3px_0px_rgba(5,213,255,0.5)]"
@@ -354,7 +351,7 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 					>
 						<div class="flex-1/2 pt-5 lg:pt-0">
 							<p
-								class="orbitron-bold tracking-widest text-center text-lg lg:text-left lg:text-4xl [text-shadow:_3px_3px_0px_rgba(5,213,255,0.5)]"
+								class="orbitron-bold tracking-widest text-center text-lg lg:text-left lg:text-4xl"
 							>
 								GAME <br /> ASSETS
 							</p>
@@ -387,25 +384,23 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 					</div>
 
 					<div
-						class="w-full lg:flex flex-row items-center justify-center mt-20"
+						class="w-full lg:flex flex-row-reverse items-center justify-center mt-10"
 					>
-						<div class="flex-1/2 justify-end pt-5 lg:pt-0">
+						<div class="flex-1/2 pt-5 lg:pt-0">
 							<p
-								class="orbitron-bold tracking-widest text-center text-lg lg:text-right lg:text-4xl [text-shadow:_3px_3px_0px_rgba(255,5,155,0.5)]"
+								class="orbitron-bold tracking-widest text-center text-lg lg:text-left lg:text-4xl"
 							>
 								CUSTOM <br /> ASSETS
 							</p>
-							<div class="lg:flex justify-end">
-								<p
-									class="max-w-prose mt-5 text-center lg:text-right"
-								>
-									Need something unique? We create custom
-									assets, backgrounds, and soundtracks
-									designed just for your game.
-								</p>
-							</div>
+							<p
+								class="max-w-prose mt-5 text-center lg:text-left"
+							>
+								Need something unique? We create custom assets,
+								backgrounds, and soundtracks designed just for
+								your game.
+							</p>
 							<div
-								class="mt-5 flex items-center justify-center lg:justify-end"
+								class="mt-5 flex items-center justify-center lg:justify-start"
 							>
 								<a
 									href="/contact"
