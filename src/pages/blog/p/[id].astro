@@ -1,8 +1,10 @@
 ---
 import Main from "@layouts/Main.astro";
+import Prose from "@components/atoms/Prose.astro";
 import Navbar from "@components/molecules/Navbar.astro";
 import Footer from "@components/molecules/Footer.astro";
-import Prose from "@components/atoms/Prose.astro";
+import WrittenByDisplay from "@components/molecules/WrittenByDisplay.astro";
+
 import SocialWidgets from "@components/molecules/SocialWidgets.astro";
 
 import { getCollection, getEntry, render } from "astro:content";
@@ -58,26 +60,13 @@ const author = await getEntry(post.data.author);
 						{post.data.title}
 					</h1>
 
-					<div
-						class="mt-4 flex items-center gap-3 text-sm text-gray-700"
-					>
-						<img
-							src={author.data.picture}
-							alt=""
-							class="w-10 h-10 rounded-full flex-shrink-0"
-						/>
-						<div class="flex items-center gap-2">
-							<a
-								href={`/author/${author.data.name}/1`}
-								class="font-medium hover:underline"
-								>{author.data.name}</a
-							>
-							·
-							<span class="text-gray-400"
-								>{post.data.publishDate.toDateString()}</span
-							>
-						</div>
-					</div>
+					<WrittenByDisplay
+						showAvatar
+						avatar={author.data.picture}
+						authorName={author.data.name}
+						date={post.data.publishDate}
+						className="mt-4"
+					/>
 
 					<hr class="my-8 border-t border-gray-200" />
 

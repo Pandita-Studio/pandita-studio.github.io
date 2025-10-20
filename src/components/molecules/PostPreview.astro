@@ -1,5 +1,7 @@
 ---
 import { getEntry } from "astro:content";
+import MainLink from "@components/atoms/MainLink.astro";
+import WrittenByDisplay from "./WrittenByDisplay.astro";
 
 const { postSlug } = Astro.props;
 const post = await getEntry("blog", postSlug);
@@ -23,11 +25,11 @@ const author = await getEntry(post.data.author);
 			<div class="text-lg font-bold">
 				{post.data.title}
 			</div>
-			<div class="text-gray-400 text-sm">
-				{post.data.publishDate.toDateString()} - <a
-					href={`/author/${author.data.name}/1`} class="hover:text-pink-500 transition-colors duration-300">{author.data.name}</a
-				>
-			</div>
+			<WrittenByDisplay
+				authorName={author.data.name}
+				date={post.data.publishDate}
+				className="text-sm"
+			/>
 		</div>
 
 		<div>
@@ -37,12 +39,9 @@ const author = await getEntry(post.data.author);
 		</div>
 
 		<div>
-			<a
-				href={`/blog/p/${post.slug}`}
-				class="text-pink-600 hover:underline transition-colors duration-200"
-			>
+			<MainLink href={`/blog/p/${post.slug}`}>
 				<i>continue reading →</i>
-			</a>
+			</MainLink>
 		</div>
 	</div>
 </div>

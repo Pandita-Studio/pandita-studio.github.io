@@ -2,9 +2,12 @@
 import type { GetStaticPaths, Page } from "astro";
 
 import Main from "@layouts/Main.astro";
+import BadgeLink from "@components/atoms/BadgeLink.astro";
 import Navbar from "@components/molecules/Navbar.astro";
 import Footer from "@components/molecules/Footer.astro";
 import PostPreview from "@components/molecules/PostPreview.astro";
+
+import { ExternalLink } from "@lucide/astro";
 
 import { getCollection } from "astro:content";
 import type { InferEntrySchema, CollectionEntry } from "astro:content";
@@ -12,7 +15,7 @@ import type { InferEntrySchema, CollectionEntry } from "astro:content";
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 	let authors = await getCollection("authors");
 
-	let paths: { params: { name: string },  props: any }[] = [];
+	let paths: { params: { name: string }; props: any }[] = [];
 
 	for (const author of authors) {
 		const authorPosts = (await getCollection("blog"))
@@ -37,7 +40,7 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 };
 
 const { page } = Astro.props as { page: Page<CollectionEntry<"blog">> };
-const { author } = Astro.props as { author: InferEntrySchema<"authors">; };
+const { author } = Astro.props as { author: InferEntrySchema<"authors"> };
 ---
 
 <Main>
@@ -95,18 +98,17 @@ const { author } = Astro.props as { author: InferEntrySchema<"authors">; };
 							>
 								{
 									author.email && (
-										<a
-											class="px-3 py-1 bg-white rounded-full text-pink-500 border-2 border-pink-500 hover:text-white hover:bg-pink-500 transition-colors duration-300"
+										<BadgeLink
 											href={`mailto:${author.email}`}
 										>
 											{author.email}
-										</a>
+										</BadgeLink>
 									)
 								}
 								{
 									author.website && (
-										<a
-											class="px-3 py-1 bg-white rounded-full text-pink-500 border-2 border-pink-500 hover:text-white hover:bg-pink-500 transition-colors duration-300"
+										<BadgeLink
+											targetBlank
 											href={
 												author.website.startsWith(
 													"http",
@@ -114,13 +116,12 @@ const { author } = Astro.props as { author: InferEntrySchema<"authors">; };
 													? author.website
 													: `https://${author.website}`
 											}
-											target="_blank"
-											rel="noopener noreferrer"
 										>
+											<ExternalLink size={16} />
 											{author.website
 												.replace(/^https?:\/\//, "")
 												.replace(/\/$/, "")}
-										</a>
+										</BadgeLink>
 									)
 								}
 							</div>
@@ -128,7 +129,6 @@ const { author } = Astro.props as { author: InferEntrySchema<"authors">; };
 					</div>
 
 					<div class="flex items-center gap-4">
-						<div class="text-sm text-gray-400">Latest posts</div>
 						<hr
 							class="h-8 border-l border-gray-200 mx-2 hidden lg:block"
 						/>

@@ -1,5 +1,7 @@
 ---
 import type { InferEntrySchema } from "astro:content";
+import BadgeLink from "@components/atoms/BadgeLink.astro";
+import { ExternalLink } from "@lucide/astro";
 
 const author = Astro.props.author as InferEntrySchema<"authors">;
 ---
@@ -44,27 +46,20 @@ const author = Astro.props.author as InferEntrySchema<"authors">;
 		<div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
 			{
 				author.email && (
-					<a
-						href={`mailto:${author.email}`}
-						class="px-3 py-1 border-2 border-pink-500 bg-black rounded-full text-pink-500 hover:bg-pink-500 hover:text-white transition-colors duration-300"
-					>
+					<BadgeLink href={`mailto:${author.email}`}>
 						{author.email}
-					</a>
+					</BadgeLink>
 				)
 			}
 
 			{
 				author.website && (
-					<a
-						href={author.website}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="px-3 py-1 border-2 border-pink-500 bg-black rounded-full text-pink-500 hover:bg-pink-500 hover:text-white transition-colors duration-300"
-					>
+					<BadgeLink href={author.website}>
+						<ExternalLink size={16} />
 						{author.website
 							.replace(/^https?:\/\//, "")
 							.replace(/\/$/, "")}
-					</a>
+					</BadgeLink>
 				)
 			}
 		</div>

@@ -3,6 +3,7 @@ import Main from "@layouts/Main.astro";
 import Navbar from "@components/molecules/Navbar.astro";
 import Footer from "@components/molecules/Footer.astro";
 import BackgroundedDiv from "@components/atoms/BackgroundedDiv.astro";
+import BlackButtonLink from "@components/atoms/BlackButtonLink.astro";
 
 import AbstractBackground from "@assets/abstract_background.jpg";
 import PorcelanaBackground from "@assets/porcelana_bg.png";
@@ -375,13 +376,9 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 								<div
 									class="mt-5 flex items-center justify-center lg:justify-start"
 								>
-									<a
-										target="_blank"
-										href="https://panditastudio.itch.io/"
-										class="flex items-center gap-3 text-white bg-black rounded py-2 px-4 opacity-80 shadow-pink-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100 hover:text-pink-500"
-									>
+									<BlackButtonLink targetBlank href="https://panditastudio.itch.io/">
 										<ExternalLink /> VISIT STORE
-									</a>
+									</BlackButtonLink>
 								</div>
 							</div>
 							<div class="flex-1/2 mt-4 lg:mt-0">
@@ -413,12 +410,9 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 								<div
 									class="mt-5 flex items-center justify-center lg:justify-start"
 								>
-									<a
-										href="/contact"
-										class="flex items-center gap-3 text-white bg-black rounded py-2 px-4 opacity-80 shadow-pink-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100 hover:text-pink-500"
-									>
+									<BlackButtonLink href="/contact">
 										CONTACT US
-									</a>
+									</BlackButtonLink>
 								</div>
 							</div>
 							<div class="flex-1/2 mt-4 lg:mt-0">
@@ -456,7 +450,7 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 		ignoreMobileResize: true,
 	});
 
-	const smoother = ScrollSmoother.create({
+	ScrollSmoother.create({
 		wrapper: "#smooth-wrapper",
 		content: "#smooth-content",
 		smooth: 1,

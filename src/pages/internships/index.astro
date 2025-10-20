@@ -1,5 +1,6 @@
 ---
 import Main from "@layouts/Main.astro";
+import BlackButtonLink from "@components/atoms/BlackButtonLink.astro";
 import Navbar from "@components/molecules/Navbar.astro";
 import Footer from "@components/molecules/Footer.astro";
 
@@ -132,13 +133,9 @@ import { ExternalLink } from "@lucide/astro";
 									to hear from you.
 								</p>
 								<div>
-									<a
-										href="/contact"
-										class="inline-flex items-center gap-3 mt-4 tracking-widest text-white bg-black rounded py-2 px-4 opacity-80 shadow-pink-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100 hover:text-pink-500 disabled:hover:text-white disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:opacity-80 disabled:hover:cursor-auto"
-										aria-label="Contact Pandita about internships"
-									>
+									<BlackButtonLink href="/contact">
 										<ExternalLink /> CONTACT US
-									</a>
+									</BlackButtonLink>
 								</div>
 							</div>
 						</div>

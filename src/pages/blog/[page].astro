@@ -2,9 +2,11 @@
 import type { GetStaticPaths, Page } from "astro";
 
 import Main from "@layouts/Main.astro";
+import MainLink from "@components/atoms/MainLink.astro";
 import Navbar from "@components/molecules/Navbar.astro";
 import Footer from "@components/molecules/Footer.astro";
 import PostPreview from "@components/molecules/PostPreview.astro";
+import WrittenByDisplay from "@components/molecules/WrittenByDisplay.astro";
 
 import { getCollection, type CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
@@ -43,7 +45,10 @@ if (!featuredAuthor) {
 			<div class="w-full max-w-6xl">
 				<div class="w-full flex flex-col gap-6">
 					<header class="max-w-prose">
-						<nav aria-label="Breadcrumb" class="text-sm text-gray-600">
+						<nav
+							aria-label="Breadcrumb"
+							class="text-sm text-gray-600"
+						>
 							<a class="hover:underline" href="/#home">Home</a>
 							<span class="mx-2">/</span>
 							<span class="font-medium">Blog</span>
@@ -56,7 +61,10 @@ if (!featuredAuthor) {
 						</h1>
 
 						<p class="text-gray-700 leading-relaxed text-lg">
-							Explore behind-the-scenes stories, art, and development insights from Pandita Studio — a studio creating anime-inspired, story-driven games with heart. 💖
+							Explore behind-the-scenes stories, art, and
+							development insights from Pandita Studio — a studio
+							creating anime-inspired, story-driven games with
+							heart. 💖
 						</p>
 					</header>
 
@@ -64,7 +72,9 @@ if (!featuredAuthor) {
 						<h2 class="mt-6 font-bold text-2xl">Featured</h2>
 						<hr class="border-gray-200 my-4" />
 
-						<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+						<div
+							class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-start"
+						>
 							<div class="w-full">
 								<img
 									src={featured.data.image}
@@ -74,39 +84,26 @@ if (!featuredAuthor) {
 							</div>
 
 							<div class="flex flex-col gap-3">
-								<h3 class="text-2xl font-bold">{featured.data.title}</h3>
+								<h3 class="text-2xl font-bold">
+									{featured.data.title}
+								</h3>
 
-								<div class="flex gap-3 items-center mt-1">
-									<img
-										src={featuredAuthor.data.picture}
-										alt={`${featuredAuthor.data.name} avatar`}
-										class="w-10 h-10 rounded-full object-cover"
-									/>
-									<div class="text-sm">
-										<a
-											href={`/author/${featuredAuthor.data.name}/1`}
-											class="font-medium hover:underline"
-										>
-											{featuredAuthor.data.name}
-										</a>
-										<span class="mx-2 text-gray-400">·</span>
-										<span class="text-gray-500">
-											{featured.data.publishDate.toDateString()}
-										</span>
-									</div>
-								</div>
+								<WrittenByDisplay
+									showAvatar
+									avatar={featuredAuthor.data.picture}
+									authorName={featuredAuthor.data.name}
+									date={featured.data.publishDate}
+									className="mt-1"
+								/>
 
 								<p class="text-gray-700 leading-relaxed">
 									{featured.data.excerpt}
 								</p>
 
 								<div>
-									<a
-										href={`/blog/p/${featured.slug}`}
-										class="text-pink-600 hover:underline transition-colors duration-200"
-									>
+									<MainLink href={`/blog/p/${featured.slug}`}>
 										continue reading →
-									</a>
+									</MainLink>
 								</div>
 							</div>
 						</div>
@@ -124,7 +121,10 @@ if (!featuredAuthor) {
 							}
 						</div>
 
-						<nav class="flex flex-wrap items-center gap-2 mt-6" aria-label="Pagination">
+						<nav
+							class="flex flex-wrap items-center gap-2 mt-6"
+							aria-label="Pagination"
+						>
 							{
 								() => {
 									if (page.currentPage != 1) {
@@ -157,7 +157,10 @@ if (!featuredAuthor) {
 							{
 								(() => {
 									const buttons = [];
-									const start = Math.max(1, page.currentPage - 1);
+									const start = Math.max(
+										1,
+										page.currentPage - 1,
+									);
 									const end =
 										Math.min(
 											page.lastPage,
@@ -217,7 +220,10 @@ if (!featuredAuthor) {
 						</nav>
 
 						<div class="text-gray-400 mt-3 text-sm">
-							<i>Page {page.currentPage} of {page.lastPage} - viewing {page.size} of {page.total} posts.</i>
+							<i
+								>Page {page.currentPage} of {page.lastPage} - viewing
+								{page.size} of {page.total} posts.</i
+							>
 						</div>
 
 						<hr class="border-gray-200 mt-6" />

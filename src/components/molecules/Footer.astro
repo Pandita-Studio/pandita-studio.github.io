@@ -1,6 +1,7 @@
 ---
 import BackgroundedDiv from "@components/atoms/BackgroundedDiv.astro";
 import Background from "@assets/abstract_background_black.jpg";
+import MainLink from "@components/atoms/MainLink.astro";
 
 import { ExternalLink } from "@lucide/astro";
 ---
@@ -13,39 +14,24 @@ import { ExternalLink } from "@lucide/astro";
 		<div>&copy; Pandita Videogames Studio S.A.S. de C.V.</div>
 		<div>
 			<a href="mailto:contact@panditastudio.com" class="hover:underline"
-				>contact@panditastudio.com</a>
+				>contact@panditastudio.com</a
+			>
 		</div>
 	</div>
 	<div class="w-full md:flex flex-row p-4 pt-10 gap-5">
 		<div>
 			<div class="text-lg text-gray-300 mb-2 orbitron-regular">SITE</div>
 			<div>
-				<a
-					href="/#home"
-					class="hover:text-pink-500 transition-colors duration-300"
-					>HOME</a
-				>
+				<MainLink href="/#home"> HOME </MainLink>
 			</div>
 			<div>
-				<a
-					href="/#games"
-					class="hover:text-pink-500 transition-colors duration-300"
-					>GAMES</a
-				>
+				<MainLink href="/#game"> GAMES </MainLink>
 			</div>
 			<div>
-				<a
-					href="/#services"
-					class="hover:text-pink-500 transition-colors duration-300"
-					>SERVICES</a
-				>
+				<MainLink href="/#services"> SERVICES </MainLink>
 			</div>
 			<div>
-				<a
-					href="/blog/1"
-					class="hover:text-pink-500 transition-colors duration-300"
-					>BLOG</a
-				>
+				<MainLink href="/blog/1"> BLOG </MainLink>
 			</div>
 		</div>
 		<div>
@@ -55,26 +41,18 @@ import { ExternalLink } from "@lucide/astro";
 				STUDIO
 			</div>
 			<div>
-				<a
-					href="/contact"
-					class="hover:text-pink-500 transition-colors duration-300"
-					>CONTACT</a
-				>
+				<MainLink href="/contact"> CONTACT </MainLink>
 			</div>
 			<div>
-				<a
-					href="/internships"
-					class="hover:text-pink-500 transition-colors duration-300"
-					>INTERNSHIPS</a
-				>
+				<MainLink href="/internships"> INTERNSHIPS </MainLink>
 			</div>
 			<div>
-				<a
-					target="_blank"
+				<MainLink
+					targetBlank
 					href="https://drive.google.com/drive/folders/12ZLZY_I6Pcn8meuCbhOvABx6yrFy65gI?usp=sharing"
-					class="hover:text-pink-500 transition-colors duration-300 flex justify-start items-center gap-2"
-					>PRESS <ExternalLink size={16} /></a
 				>
+					PRESS <ExternalLink size={16} />
+				</MainLink>
 			</div>
 		</div>
 		<div>
@@ -84,44 +62,38 @@ import { ExternalLink } from "@lucide/astro";
 				EXTERNAL
 			</div>
 			<div>
-				<a
-					target="_blank"
-					href="https://discord.gg/BWCDPR7FqZ"
-					class="hover:text-pink-500 transition-colors duration-300"
-					>DISCORD</a
-				>
+				<MainLink targetBlank href="https://discord.gg/BWCDPR7FqZ">
+					DISCORD
+				</MainLink>
 			</div>
 			<div>
-				<a
-					target="_blank"
+				<MainLink
+					targetBlank
 					href="https://www.facebook.com/PanditaVideogames"
-					class="hover:text-pink-500 transition-colors duration-300"
-					>FACEBOOK</a
 				>
+					FACEBOOK
+				</MainLink>
 			</div>
 			<div>
-				<a
-					target="_blank"
+				<MainLink
+					targetBlank
 					href="https://www.instagram.com/panditastudio"
-					class="hover:text-pink-500 transition-colors duration-300"
-					>INSTAGRAM</a
 				>
+					INSTAGRAM
+				</MainLink>
 			</div>
 			<div>
-				<a
-					target="_blank"
+				<MainLink
+					targetBlank
 					href="https://www.youtube.com/@panditastudio"
-					class="hover:text-pink-500 transition-colors duration-300"
-					>YOUTUBE</a
 				>
+					YOUTUBE
+				</MainLink>
 			</div>
 			<div>
-				<a
-					target="_blank"
-					href="https://x.com/pandita_studio"
-					class="hover:text-pink-500 transition-colors duration-300"
-					>X</a
-				>
+				<MainLink targetBlank href="https://x.com/pandita_studio">
+					X
+				</MainLink>
 			</div>
 		</div>
 	</div>
