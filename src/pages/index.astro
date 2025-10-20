@@ -1,8 +1,8 @@
 ---
 import Main from "@layouts/Main.astro";
-import Navbar from "@components/Navbar.astro";
-import Footer from "@components/Footer.astro";
-import BgDiv from "@components/BgDiv.astro";
+import Navbar from "@components/molecules/Navbar.astro";
+import Footer from "@components/molecules/Footer.astro";
+import BackgroundedDiv from "@components/atoms/BackgroundedDiv.astro";
 
 import AbstractBackground from "@assets/abstract_background.jpg";
 import PorcelanaBackground from "@assets/porcelana_bg.png";
@@ -30,6 +30,7 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 ---
 
 <Main>
+	{/* Loading message */}
 	<div class="h-screen w-full fixed top-0 opacity-0 z-40" id="loading-screen">
 		<div class="w-full h-full flex items-center justify-center">
 			<p
@@ -40,7 +41,8 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 		</div>
 	</div>
 
-	<div class="h-screen w-screen fixed top-0 z-30" id="start-screen">
+	{/* Ready message */}
+	<div class="h-screen w-screen fixed top-0 z-30 bg-white" id="start-screen">
 		<div class="w-full h-full flex items-center justify-center">
 			<p
 				id="start-screen-text"
@@ -50,380 +52,390 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 		</div>
 	</div>
 
-	<div id="loading-bg" class="h-screen w-screen fixed top-0 bg-white z-10">
-	</div>
-
 	<Navbar autoFade={false} />
 
-	<div id="smooth-wrapper">
-		<div id="smooth-content">
-			<div id="home"></div>
+	<main>
+		<div id="smooth-wrapper">
+			<div id="smooth-content">
+				<section class="w-full h-screen" id="home">
+					<article class="w-full h-full" id="about-screen">
+						<BackgroundedDiv
+							backgroundSrc={AbstractBackground.src}
+							className="w-full h-full flex items-center justify-center orbitron regular"
+						>
+							<p
+								class="bg-white shadow-[0px_0px_20px_20px_#ffffff] p-4 text-center lg:text-left"
+								id="about-screen-text"
+							>
+								We are a Mexican video-games studio creating
+								unique anime-inspired games that blend
+								storytelling, style, and passion.
+							</p>
+						</BackgroundedDiv>
+					</article>
+				</section>
 
-			<div class="h-screen w-screen" id="about-screen">
-				<BgDiv
-					backgroundSrc={AbstractBackground.src}
-					className="w-full h-full flex items-center justify-center orbitron regular"
-				>
-					<p
-						class="bg-white shadow-[0px_0px_20px_20px_#ffffff] p-4 text-center lg:text-left"
-						id="about-screen-text"
+				<section class="w-full" id="games" scroll-ofsset="-500">
+					<BackgroundedDiv
+						backgroundSrc={PorcelanaBackground.src}
+						className="w-full h-screen bg-[#69bcff]"
+						id="game-1"
 					>
-						We are a Mexican video-games studio creating unique
-						anime-inspired games that blend storytelling, style, and
-						passion.
-					</p>
-				</BgDiv>
+						<div
+							class="w-full h-full flex flex-row justify-center items-end lg:items-center shadow-[inset_0px_-50px_100px_-9px_rgba(0,0,0,0.5)]"
+						>
+							<div
+								class="lg:grid grid-cols-2 grid-rows-1 gap-4 w-full"
+							>
+								<div>
+									<div class="w-full flex justify-center">
+										<img
+											class="absolute bottom-0 max-h-screen z-[-1]"
+											src={IsabellaShy.src}
+											alt="Isabella sprite"
+										/>
+										<img
+											class="absolute bottom-0 max-h-screen z-[-1]"
+											src={IsabellaSeeing.src}
+											alt="Isabella sprite"
+											id="isabella-sprite"
+										/>
+									</div>
+								</div>
+
+								<div
+									class="opacity-0 z-20 max-lg:pt-8"
+									id="game-1-logo"
+								>
+									<div
+										class="w-full flex justify-center lg:justify-start"
+									>
+										<img
+											class="w-full max-w-80 h-fit"
+											src={PorcelanaLogo.src}
+											alt="Porcelana"
+										/>
+									</div>
+
+									<div
+										class="w-full flex justify-center mt-5 lg:justify-start lg:mt-2"
+									>
+										<p
+											class="max-w-[50ch] text-xl text-white text-shadow-lg text-shadow-[rgba(0,0,0,0.6)] text-center p-2 lg:text-left max-lg:p-4"
+										>
+											Porcelana is a visual novel about a
+											girl who seems perfect but hides her
+											pain behind a mask — a touching
+											story about vulnerability and
+											self-acceptance.
+										</p>
+									</div>
+
+									<div
+										class="w-full flex justify-center mt-10 mb-20 gap-4 p-2 text-sm lg:text-base lg:justify-start lg:mt-5 lg:mb-0"
+									>
+										<a
+											target="_blank"
+											href="https://store.steampowered.com/app/1788840/Porcelana/"
+											class="flex items-center gap-3 text-pink-400 bg-white rounded py-2 px-4 opacity-80 shadow-pink-400 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
+										>
+											<Gamepad2 /> PLAY ON STEAM
+										</a>
+
+										<a
+											target="_blank"
+											href="https://panditastudio.itch.io/porcelana"
+											class="flex items-center gap-3 text-pink-400 bg-white rounded py-2 px-4 opacity-80 shadow-pink-400 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
+										>
+											<Store /> PLAY ON ITCH.IO
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</BackgroundedDiv>
+
+					<BackgroundedDiv
+						backgroundSrc={RockstarIdolBackground.src}
+						className="w-full h-screen bg-indigo-200 overflow-clip"
+						id="game-2"
+					>
+						<div
+							class="w-full h-full flex flex-row justify-center items-end lg:items-center shadow-[inset_0px_-50px_100px_-9px_rgba(0,0,0,0.5)]"
+						>
+							<div
+								class="lg:grid grid-cols-2 grid-rows-1 gap-4 w-full"
+							>
+								<div
+									class="opacity-0 z-20 max-lg:pt-8"
+									id="game-2-logo"
+								>
+									<div
+										class="w-full flex justify-center lg:justify-end"
+									>
+										<img
+											class="w-full max-w-80 h-fit"
+											src={RockstarIdolLogo.src}
+											alt="Rockstar Idol logo"
+										/>
+									</div>
+									<div
+										class="w-full flex justify-center mt-5 lg:justify-end lg:mt-2"
+									>
+										<p
+											class="max-w-[50ch] text-xl text-white text-shadow-lg text-shadow-[rgba(0,0,0,0.6)] text-center p-2 lg:text-right max-lg:p-4"
+										>
+											Rockstar Idol is a NSFW game which
+											combines the storytelling of a
+											visual novel with the mechanics of a
+											rhythm game. 🎸
+										</p>
+									</div>
+									<div
+										class="w-full flex justify-center mt-10 mb-20 gap-4 p-2 text-sm lg:text-base lg:justify-end lg:mt-5 lg:mb-0"
+									>
+										<a
+											target="_blank"
+											href="https://panditastudio.itch.io/rockstar-idol"
+											class="flex items-center gap-3 text-indigo-500 bg-white rounded py-2 px-4 opacity-80 shadow-indigo-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
+										>
+											<Store /> PLAY ON ITCH.IO
+										</a>
+									</div>
+								</div>
+
+								<div>
+									<div class="w-full flex justify-center">
+										<img
+											class="absolute bottom-0 max-h-[95%] z-[-1]"
+											src={Hitori.src}
+											alt="Hitori sprite"
+										/>
+										<img
+											class="absolute top-0 bottom-0 right-0 left-0 m-auto z-[1]"
+											src={PlayerKun.src}
+											alt="PlayerKun"
+											id="player-kun"
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</BackgroundedDiv>
+
+					<BackgroundedDiv
+						backgroundSrc={RockstarIdolEBackground.src}
+						className="w-full h-screen bg-amber-200 overflow-clip"
+						id="game-3"
+					>
+						<div
+							class="w-full h-full flex flex-row justify-center items-end lg:items-center shadow-[inset_0px_-50px_100px_-9px_rgba(0,0,0,0.5)]"
+						>
+							<div
+								class="lg:grid grid-cols-2 grid-rows-1 gap-4 w-full"
+							>
+								<div>
+									<div class="w-full flex justify-center">
+										<img
+											class="absolute bottom-0 max-h-[95%] z-[-3] opacity-0"
+											src={Cecilia.src}
+											alt="Cecilia sprite"
+											id="cecilia-sprite"
+										/>
+										<img
+											class="absolute bottom-0 max-h-[95%] z-[-2] opacity-0"
+											src={Estrella.src}
+											alt="Estrella sprite"
+											id="estrella-sprite"
+										/>
+										<img
+											class="absolute bottom-0 max-h-[95%] z-[-1]"
+											src={Ruka.src}
+											alt="Ruka sprite"
+										/>
+									</div>
+								</div>
+
+								<div
+									class="opacity-0 z-20 max-lg:pt-8"
+									id="game-3-logo"
+								>
+									<div
+										class="w-full flex justify-center lg:justify-start"
+									>
+										<img
+											class="w-full max-w-80 h-fit"
+											src={RockstarIdolELogo.src}
+											alt="Rockstar Idol extended logo"
+										/>
+									</div>
+									<div
+										class="w-full flex justify-center mt-5 lg:justify-start lg:mt-2"
+									>
+										<p
+											class="max-w-[50ch] text-xl text-white text-shadow-lg text-shadow-[rgba(0,0,0,0.6)] text-center p-2 lg:text-left max-lg:p-4"
+										>
+											Rockstar Idol: Extended Edition is
+											louder, hotter, and packed with
+											content: 6 idols, 31 songs, party
+											levels, 90 CGs, Arcade Mode, Easy
+											Mode, and full controller support.
+										</p>
+									</div>
+									<div
+										class="w-full flex justify-center mt-10 mb-20 gap-4 p-2 text-sm lg:text-base lg:justify-start lg:mt-5 lg:mb-0"
+									>
+										<a
+											target="_blank"
+											href="https://panditastudio.itch.io/rockstar-idol-extended-version"
+											class="flex items-center gap-3 text-red-500 bg-white rounded py-2 px-4 opacity-80 shadow-red-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
+										>
+											<Store /> PLAY ON ITCH.IO
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</BackgroundedDiv>
+
+					<BackgroundedDiv
+						backgroundSrc={TanyaBg.src}
+						className="w-full h-screen bg-blue-300 overflow-clip shadow-[0px_9px_68px_0px_#616161]"
+						id="game-4"
+						bgPosition="left"
+					>
+						<div
+							class="w-full h-full flex flex-row justify-center items-end shadow-[inset_0px_-50px_100px_-9px_rgba(0,0,0,0.5)]"
+						>
+							<div
+								class="opacity-0 z-20 pb-8 lg:pb-24 max-lg:pt-8"
+								id="game-4-logo"
+							>
+								<div class="w-full flex justify-center">
+									<img
+										class="w-full max-w-80 h-fit"
+										src={CatsLogo.src}
+										alt="Tornaluna Cats Logo"
+									/>
+								</div>
+								<div class="w-full flex justify-center mt-5">
+									<p
+										class="max-w-[50ch] text-xl text-white text-shadow-lg text-shadow-[rgba(0,0,0,0.6)] text-center p-2 max-lg:p-4"
+									>
+										A cozy tale of healing and connection.
+										Help Tanya remember who she was — and
+										discover who you’ll become together.
+									</p>
+								</div>
+								<div
+									class="w-full flex justify-center mt-10 mb-15 gap-4 p-2 text-sm lg:text-base lg:mt-5 lg:mb-0"
+								>
+									<a
+										target="_blank"
+										href="https://panditastudio.itch.io/the-book-of-tornaluna-cats-demo"
+										class="flex items-center gap-3 text-indigo-500 bg-white rounded py-2 px-4 opacity-80 shadow-indigo-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
+									>
+										<Store /> DEMO
+									</a>
+
+									<a
+										target="_blank"
+										href="https://www.kickstarter.com/projects/edo0xff/the-book-of-tornaluna-cats"
+										class="flex items-center gap-3 text-indigo-500 bg-white rounded py-2 px-4 opacity-80 shadow-indigo-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
+									>
+										<Rss /> FOLLOW
+									</a>
+								</div>
+							</div>
+						</div>
+					</BackgroundedDiv>
+				</section>
+
+				<section
+					id="services"
+					class="w-screen bg-white p-4 pt-32 pb-32"
+				>
+					<article id="assets-store" class="w-full">
+						<div
+							class="w-full lg:flex flex-row-reverse items-center justify-center"
+						>
+							<div class="flex-1/2 pt-5 lg:pt-0">
+								<p
+									class="orbitron-bold tracking-widest text-center text-lg lg:text-left lg:text-4xl"
+								>
+									GAME <br /> ASSETS
+								</p>
+								<p
+									class="max-w-prose mt-5 text-center lg:text-left bg-white shadow-[0px_0px_20px_20px_#ffffff]"
+								>
+									Explore our itch.io store for a wide variety
+									of characters, backgrounds, and soundtracks
+									to bring your next visual novel to life.
+								</p>
+								<div
+									class="mt-5 flex items-center justify-center lg:justify-start"
+								>
+									<a
+										target="_blank"
+										href="https://panditastudio.itch.io/"
+										class="flex items-center gap-3 text-white bg-black rounded py-2 px-4 opacity-80 shadow-pink-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100 hover:text-pink-500"
+									>
+										<ExternalLink /> VISIT STORE
+									</a>
+								</div>
+							</div>
+							<div class="flex-1/2 mt-4 lg:mt-0">
+								<img
+									class="lg:max-w-3xl"
+									src={CharactersScreenshot.src}
+									alt="Characters screenshot"
+								/>
+							</div>
+						</div>
+					</article>
+					<article id="customs-assets" class="w-full">
+						<div
+							class="w-full lg:flex flex-row-reverse items-center justify-center mt-10"
+						>
+							<div class="flex-1/2 pt-5 lg:pt-0">
+								<p
+									class="orbitron-bold tracking-widest text-center text-lg lg:text-left lg:text-4xl"
+								>
+									CUSTOM <br /> ASSETS
+								</p>
+								<p
+									class="max-w-prose mt-5 text-center lg:text-left"
+								>
+									Need something unique? We create custom
+									assets, backgrounds, and soundtracks
+									designed just for your game.
+								</p>
+								<div
+									class="mt-5 flex items-center justify-center lg:justify-start"
+								>
+									<a
+										href="/contact"
+										class="flex items-center gap-3 text-white bg-black rounded py-2 px-4 opacity-80 shadow-pink-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100 hover:text-pink-500"
+									>
+										CONTACT US
+									</a>
+								</div>
+							</div>
+							<div class="flex-1/2 mt-4 lg:mt-0">
+								<img
+									class="lg:max-w-3xl"
+									src={CustomScreenshot.src}
+									alt="Characters screenshot"
+								/>
+							</div>
+						</div>
+					</article>
+				</section>
+
+				<Footer />
 			</div>
-
-			<div id="games" scroll-offset="-500"></div>
-
-			<BgDiv
-				backgroundSrc={PorcelanaBackground.src}
-				className="h-screen w-screen bg-[#69bcff]"
-				id="game-1"
-			>
-				<div
-					class="w-full h-full flex flex-row justify-center items-end lg:items-center shadow-[inset_0px_-50px_100px_-9px_rgba(0,0,0,0.5)]"
-				>
-					<div class="lg:grid grid-cols-2 grid-rows-1 gap-4 w-full">
-						<div>
-							<div class="w-full flex justify-center">
-								<img
-									class="absolute bottom-0 max-h-screen z-[-1]"
-									src={IsabellaShy.src}
-									alt="Isabella sprite"
-								/>
-								<img
-									class="absolute bottom-0 max-h-screen z-[-1]"
-									src={IsabellaSeeing.src}
-									alt="Isabella sprite"
-									id="isabella-sprite"
-								/>
-							</div>
-						</div>
-
-						<div
-							class="opacity-0 z-20 max-lg:pt-8"
-							id="game-1-logo"
-						>
-							<div
-								class="w-full flex justify-center lg:justify-start"
-							>
-								<img
-									class="w-full max-w-80 h-fit"
-									src={PorcelanaLogo.src}
-									alt="Porcelana"
-								/>
-							</div>
-
-							<div
-								class="w-full flex justify-center mt-5 lg:justify-start lg:mt-2"
-							>
-								<p
-									class="max-w-[50ch] text-xl text-white text-shadow-lg text-shadow-[rgba(0,0,0,0.6)] text-center p-2 lg:text-left max-lg:p-4"
-								>
-									Porcelana is a visual novel about a girl who
-									seems perfect but hides her pain behind a
-									mask — a touching story about vulnerability
-									and self-acceptance.
-								</p>
-							</div>
-
-							<div
-								class="w-full flex justify-center mt-10 mb-20 gap-4 p-2 text-sm lg:text-base lg:justify-start lg:mt-5 lg:mb-0"
-							>
-								<a
-									target="_blank"
-									href="https://store.steampowered.com/app/1788840/Porcelana/"
-									class="flex items-center gap-3 text-pink-400 bg-white rounded py-2 px-4 opacity-80 shadow-pink-400 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
-								>
-									<Gamepad2 /> PLAY ON STEAM
-								</a>
-
-								<a
-									target="_blank"
-									href="https://panditastudio.itch.io/porcelana"
-									class="flex items-center gap-3 text-pink-400 bg-white rounded py-2 px-4 opacity-80 shadow-pink-400 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
-								>
-									<Store /> PLAY ON ITCH.IO
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</BgDiv>
-
-			<BgDiv
-				backgroundSrc={RockstarIdolBackground.src}
-				className="h-screen w-screen bg-indigo-200 overflow-clip"
-				id="game-2"
-			>
-				<div
-					class="w-full h-full flex flex-row justify-center items-end lg:items-center shadow-[inset_0px_-50px_100px_-9px_rgba(0,0,0,0.5)]"
-				>
-					<div class="lg:grid grid-cols-2 grid-rows-1 gap-4 w-full">
-						<div
-							class="opacity-0 z-20 max-lg:pt-8"
-							id="game-2-logo"
-						>
-							<div
-								class="w-full flex justify-center lg:justify-end"
-							>
-								<img
-									class="w-full max-w-80 h-fit"
-									src={RockstarIdolLogo.src}
-									alt="Rockstar Idol logo"
-								/>
-							</div>
-							<div
-								class="w-full flex justify-center mt-5 lg:justify-end lg:mt-2"
-							>
-								<p
-									class="max-w-[50ch] text-xl text-white text-shadow-lg text-shadow-[rgba(0,0,0,0.6)] text-center p-2 lg:text-right max-lg:p-4"
-								>
-									Rockstar Idol is a NSFW game which combines
-									the storytelling of a visual novel with the
-									mechanics of a rhythm game. 🎸
-								</p>
-							</div>
-							<div
-								class="w-full flex justify-center mt-10 mb-20 gap-4 p-2 text-sm lg:text-base lg:justify-end lg:mt-5 lg:mb-0"
-							>
-								<a
-									target="_blank"
-									href="https://panditastudio.itch.io/rockstar-idol"
-									class="flex items-center gap-3 text-indigo-500 bg-white rounded py-2 px-4 opacity-80 shadow-indigo-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
-								>
-									<Store /> PLAY ON ITCH.IO
-								</a>
-							</div>
-						</div>
-
-						<div>
-							<div class="w-full flex justify-center">
-								<img
-									class="absolute bottom-0 max-h-[95%] z-[-1]"
-									src={Hitori.src}
-									alt="Hitori sprite"
-								/>
-								<img
-									class="absolute top-0 bottom-0 right-0 left-0 m-auto z-[1]"
-									src={PlayerKun.src}
-									alt="PlayerKun"
-									id="player-kun"
-								/>
-							</div>
-						</div>
-					</div>
-				</div>
-			</BgDiv>
-
-			<BgDiv
-				backgroundSrc={RockstarIdolEBackground.src}
-				className="h-screen w-screen bg-amber-200 overflow-clip"
-				id="game-3"
-			>
-				<div
-					class="w-full h-full flex flex-row justify-center items-end lg:items-center shadow-[inset_0px_-50px_100px_-9px_rgba(0,0,0,0.5)]"
-				>
-					<div class="lg:grid grid-cols-2 grid-rows-1 gap-4 w-full">
-						<div>
-							<div class="w-full flex justify-center">
-								<img
-									class="absolute bottom-0 max-h-[95%] z-[-3] opacity-0"
-									src={Cecilia.src}
-									alt="Cecilia sprite"
-									id="cecilia-sprite"
-								/>
-								<img
-									class="absolute bottom-0 max-h-[95%] z-[-2] opacity-0"
-									src={Estrella.src}
-									alt="Estrella sprite"
-									id="estrella-sprite"
-								/>
-								<img
-									class="absolute bottom-0 max-h-[95%] z-[-1]"
-									src={Ruka.src}
-									alt="Ruka sprite"
-								/>
-							</div>
-						</div>
-
-						<div
-							class="opacity-0 z-20 max-lg:pt-8"
-							id="game-3-logo"
-						>
-							<div
-								class="w-full flex justify-center lg:justify-start"
-							>
-								<img
-									class="w-full max-w-80 h-fit"
-									src={RockstarIdolELogo.src}
-									alt="Rockstar Idol extended logo"
-								/>
-							</div>
-							<div
-								class="w-full flex justify-center mt-5 lg:justify-start lg:mt-2"
-							>
-								<p
-									class="max-w-[50ch] text-xl text-white text-shadow-lg text-shadow-[rgba(0,0,0,0.6)] text-center p-2 lg:text-left max-lg:p-4"
-								>
-									Rockstar Idol: Extended Edition is louder,
-									hotter, and packed with content: 6 idols, 31
-									songs, party levels, 90 CGs, Arcade Mode,
-									Easy Mode, and full controller support.
-								</p>
-							</div>
-							<div
-								class="w-full flex justify-center mt-10 mb-20 gap-4 p-2 text-sm lg:text-base lg:justify-start lg:mt-5 lg:mb-0"
-							>
-								<a
-									target="_blank"
-									href="https://panditastudio.itch.io/rockstar-idol-extended-version"
-									class="flex items-center gap-3 text-red-500 bg-white rounded py-2 px-4 opacity-80 shadow-red-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
-								>
-									<Store /> PLAY ON ITCH.IO
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</BgDiv>
-
-			<BgDiv
-				backgroundSrc={TanyaBg.src}
-				className="h-screen w-screen bg-blue-300 overflow-clip shadow-[0px_9px_68px_0px_#616161]"
-				id="game-4"
-				bgPosition="left"
-			>
-				<div
-					class="w-full h-full flex flex-row justify-center items-end shadow-[inset_0px_-50px_100px_-9px_rgba(0,0,0,0.5)]"
-				>
-					<div
-						class="opacity-0 z-20 pb-8 lg:pb-24 max-lg:pt-8"
-						id="game-4-logo"
-					>
-						<div class="w-full flex justify-center">
-							<img
-								class="w-full max-w-80 h-fit"
-								src={CatsLogo.src}
-								alt="Tornaluna Cats Logo"
-							/>
-						</div>
-						<div class="w-full flex justify-center mt-5">
-							<p
-								class="max-w-[50ch] text-xl text-white text-shadow-lg text-shadow-[rgba(0,0,0,0.6)] text-center p-2 max-lg:p-4"
-							>
-								A cozy tale of healing and connection. Help
-								Tanya remember who she was — and discover who
-								you’ll become together.
-							</p>
-						</div>
-						<div
-							class="w-full flex justify-center mt-10 mb-15 gap-4 p-2 text-sm lg:text-base lg:mt-5 lg:mb-0"
-						>
-							<a
-								target="_blank"
-								href="https://panditastudio.itch.io/the-book-of-tornaluna-cats-demo"
-								class="flex items-center gap-3 text-indigo-500 bg-white rounded py-2 px-4 opacity-80 shadow-indigo-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
-							>
-								<Store /> DEMO
-							</a>
-
-							<a
-								target="_blank"
-								href="https://www.kickstarter.com/projects/edo0xff/the-book-of-tornaluna-cats"
-								class="flex items-center gap-3 text-indigo-500 bg-white rounded py-2 px-4 opacity-80 shadow-indigo-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
-							>
-								<Rss /> FOLLOW
-							</a>
-						</div>
-					</div>
-				</div>
-			</BgDiv>
-
-			<div id="services"></div>
-
-			<div class="w-screen bg-white p-4 pt-32 pb-32" id="assets-store">
-				<div class="bg-white shadow-[0px_0px_20px_20px_#ffffff]">
-					<div
-						class="w-full lg:flex flex-row-reverse items-center justify-center"
-					>
-						<div class="flex-1/2 pt-5 lg:pt-0">
-							<p
-								class="orbitron-bold tracking-widest text-center text-lg lg:text-left lg:text-4xl"
-							>
-								GAME <br /> ASSETS
-							</p>
-							<p
-								class="max-w-prose mt-5 text-center lg:text-left bg-white shadow-[0px_0px_20px_20px_#ffffff]"
-							>
-								Explore our itch.io store for a wide variety of
-								characters, backgrounds, and soundtracks to
-								bring your next visual novel to life.
-							</p>
-							<div
-								class="mt-5 flex items-center justify-center lg:justify-start"
-							>
-								<a
-									target="_blank"
-									href="https://panditastudio.itch.io/"
-									class="flex items-center gap-3 text-white bg-black rounded py-2 px-4 opacity-80 shadow-pink-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100 hover:text-pink-500"
-								>
-									<ExternalLink /> VISIT STORE
-								</a>
-							</div>
-						</div>
-						<div class="flex-1/2 mt-4 lg:mt-0">
-							<img
-								class="lg:max-w-3xl"
-								src={CharactersScreenshot.src}
-								alt="Characters screenshot"
-							/>
-						</div>
-					</div>
-
-					<div
-						class="w-full lg:flex flex-row-reverse items-center justify-center mt-10"
-					>
-						<div class="flex-1/2 pt-5 lg:pt-0">
-							<p
-								class="orbitron-bold tracking-widest text-center text-lg lg:text-left lg:text-4xl"
-							>
-								CUSTOM <br /> ASSETS
-							</p>
-							<p
-								class="max-w-prose mt-5 text-center lg:text-left"
-							>
-								Need something unique? We create custom assets,
-								backgrounds, and soundtracks designed just for
-								your game.
-							</p>
-							<div
-								class="mt-5 flex items-center justify-center lg:justify-start"
-							>
-								<a
-									href="/contact"
-									class="flex items-center gap-3 text-white bg-black rounded py-2 px-4 opacity-80 shadow-pink-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100 hover:text-pink-500"
-								>
-									CONTACT US
-								</a>
-							</div>
-						</div>
-						<div class="flex-1/2 mt-4 lg:mt-0">
-							<img
-								class="lg:max-w-3xl"
-								src={CustomScreenshot.src}
-								alt="Characters screenshot"
-							/>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<Footer />
 		</div>
-	</div>
+	</main>
 </Main>
 
 <script>
@@ -495,8 +507,7 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 			ease: "none",
 			delay: 0.5,
 		})
-		.to("#start-screen", { duration: 0.3, opacity: 0, delay: 0.5 })
-		.to("#loading-bg", { duration: 1, delay: 1, opacity: 0 })
+		.to("#start-screen", { duration: 1.0, opacity: 0, delay: 1.5 })
 		.add(() => {
 			document.querySelector("#loading-screen")?.classList.add("hidden");
 			document.querySelector("#start-screen")?.classList.add("hidden");

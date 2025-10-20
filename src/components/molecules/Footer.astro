@@ -1,11 +1,11 @@
 ---
-import BgDiv from "./BgDiv.astro";
+import BackgroundedDiv from "@components/atoms/BackgroundedDiv.astro";
 import Background from "@assets/abstract_background_black.jpg";
 
 import { ExternalLink } from "@lucide/astro";
 ---
 
-<BgDiv
+<BackgroundedDiv
 	backgroundSrc={Background.src}
 	className="w-full min-h-screen bg-black text-white tracking-widest"
 >
@@ -125,4 +125,4 @@ import { ExternalLink } from "@lucide/astro";
 			</div>
 		</div>
 	</div>
-</BgDiv>
+</BackgroundedDiv>

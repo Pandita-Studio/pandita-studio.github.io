@@ -2,9 +2,9 @@
 import type { GetStaticPaths, Page } from "astro";
 
 import Main from "@layouts/Main.astro";
-import Navbar from "@components/Navbar.astro";
-import Footer from "@components/Footer.astro";
-import PostPreview from "@components/blog/PostPreview.astro";
+import Navbar from "@components/molecules/Navbar.astro";
+import Footer from "@components/molecules/Footer.astro";
+import PostPreview from "@components/molecules/PostPreview.astro";
 
 import { getCollection, type CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";

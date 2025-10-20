@@ -1,12 +1,12 @@
 ---
 import Main from "@layouts/Main.astro";
-import Navbar from "@components/Navbar.astro";
-import Footer from "@components/Footer.astro";
-import Prose from "@components/Prose.astro";
-import Social from "@components/blog/Social.astro";
+import Navbar from "@components/molecules/Navbar.astro";
+import Footer from "@components/molecules/Footer.astro";
+import Prose from "@components/atoms/Prose.astro";
+import SocialWidgets from "@components/molecules/SocialWidgets.astro";
 
 import { getCollection, getEntry, render } from "astro:content";
-import AuthorCard from "@components/blog/AuthorCard.astro";
+import AuthorCard from "@components/molecules/AuthorCard.astro";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("blog");
@@ -153,7 +153,7 @@ const author = await getEntry(post.data.author);
 					</div>
 
 					<div class="mt-6">
-						<Social />
+						<SocialWidgets />
 					</div>
 				</div>
 			</article>
