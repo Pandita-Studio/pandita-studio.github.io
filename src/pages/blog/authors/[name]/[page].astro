@@ -56,7 +56,7 @@ const { author } = Astro.props as { author: InferEntrySchema<"authors"> };
 					<span class="mx-2">/</span>
 					<a class="hover:underline" href="/blog/1">Blog</a>
 					<span class="mx-2">/</span>
-					<a class="hover:underline" href="/author">Authors</a>
+					<a class="hover:underline" href="/blog/authors">Authors</a>
 					<span class="mx-2">/</span>
 					<span class="font-medium">{author.name}</span>
 				</nav>
@@ -156,7 +156,7 @@ const { author } = Astro.props as { author: InferEntrySchema<"authors"> };
 				<Paginator 
 					currentPage={page.currentPage} 
 					totalPages={page.lastPage} 
-					baseUrl={`/author/${author.name}`}
+					baseUrl={`/blog/authors/${author.name}`}
 				/>
 
 				<hr class="border-gray-200 mt-6" />
