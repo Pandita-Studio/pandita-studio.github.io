@@ -2,7 +2,7 @@
 import "@styles/global.css";
 import { SEO } from "astro-seo";
 
-const canonicalUrl = Astro.props.canonicalUrl ?? import.meta.env.PUBLIC_SITE_URL ?? null;
+const canonicalUrl = import.meta.env.PUBLIC_SITE_URL ?? Astro.props.canonicalUrl ?? null;
 
 const title = Astro.props.title ?? "Pandita | Videogames Studio";
 const description =
