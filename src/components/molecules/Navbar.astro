@@ -1,0 +1,158 @@
+---
+import PanditaLogoDark from "@assets/pandita_logo_dark.png";
+import PanditaLogoLight from "@assets/pandita_logo_light.png";
+
+import { X } from "@lucide/astro";
+
+const autoFade = Astro.props.autoFade ?? true;
+---
+
+<nav
+	id="navbar"
+	class="fixed top-0 w-screen h-20 dark:h-16 bg-transparent dark:bg-black text-black dark:text-white z-10 opacity-0 transition-all duration-300"
+>
+	<div
+		class="flex flex-row justify-center items-center flex-nowrap gap-4 h-full"
+	>
+		<div class="flex shrink-0 items-center justify-center basis-1/4">
+			<div class="h-[32px] w-[32px]">
+				<a href="/#home">
+					<img
+						src={PanditaLogoLight.src}
+						alt="Pandita Studio"
+						class="absolute h-8 w-auto"
+					/>
+					<img
+						src={PanditaLogoDark.src}
+						alt="Pandita Studio"
+						class="absolute h-8 w-auto dark:opacity-0 transition-opacity duration-1000"
+					/></a
+				>
+			</div>
+		</div>
+
+		<div class="flex justify-center items-center basis-2/4">
+			<p class="tracking-[.5rem] text-xs lg:text-lg">
+				<a href="/#home">
+					PANDITA<span class="hidden lg:contents"> STUDIO</span>
+				</a>
+			</p>
+		</div>
+
+		<div class="flex items-center justify-center basis-1/4" id="open-popup">
+			<div
+				class="group relative flex size-10 items-center justify-center gap-1 hover:cursor-pointer"
+			>
+				<div
+					class="size-1 rounded-full bg-black dark:bg-white duration-300 group-hover:opacity-0"
+				>
+				</div>
+				<div
+					class="relative size-1 origin-center rounded-full bg-black dark:bg-white duration-300 group-hover:w-6"
+				>
+				</div>
+				<div
+					class="size-1 rounded-full bg-black dark:bg-white duration-300 group-hover:opacity-0"
+				>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<div
+	id="popup"
+	class="fixed z-50 w-screen h-screen top-0 left-0 bg-white transition-opacity duration-300 hidden opacity-0"
+>
+	<div class="flex items-center justify-center">
+		<div
+			class="w-full max-w-4xl flex flex-col items-end justify-end p-5 gap-3"
+		>
+			<div
+				class="close-popup w-16 h-16 flex items-center justify-center bg-white rounded-full shadow-none hover:cursor-pointer hover:bg-black hover:text-white hover:shadow-[5px_5px_0px_0px_rgba(5,213,255,0.5)] transition-all duration-300"
+			>
+				<X size={64} />
+			</div>
+			<div
+				class="tracking-widest orbitron-regular text-3xl text-gray-600 pt-4"
+			>
+				NAVIGATE
+			</div>
+			<div class="text-4xl">
+				<a
+					class="close-popup orbitron-regular tracking-widest text-black text-shadow-none hover:[text-shadow:_3px_3px_0px_rgba(255,5,155,0.5)] transition-all duration-300"
+					href="/#home">HOME</a
+				>
+			</div>
+			<div class="text-4xl">
+				<a
+					class="close-popup orbitron-regular tracking-widest text-black text-shadow-none hover:[text-shadow:_3px_3px_0px_rgba(255,5,155,0.5)] transition-all duration-300"
+					href="/#games">GAMES</a
+				>
+			</div>
+			<div class="text-4xl">
+				<a
+					class="close-popup orbitron-regular tracking-widest text-black text-shadow-none hover:[text-shadow:_3px_3px_0px_rgba(255,5,155,0.5)] transition-all duration-300"
+					href="/#services">SERVICES</a
+				>
+			</div>
+			<div class="text-4xl">
+				<a
+					class="orbitron-regular tracking-widest text-black text-shadow-none hover:[text-shadow:_3px_3px_0px_rgba(5,213,255,0.5)] transition-all duration-300"
+					href="/blog/1">BLOG</a
+				>
+			</div>
+			<div class="text-4xl">
+				<a
+					class="orbitron-regular tracking-widest text-black text-shadow-none hover:[text-shadow:_3px_3px_0px_rgba(5,213,255,0.5)] transition-all duration-300"
+					href="/contact">CONTACT</a
+				>
+			</div>
+			<div class="text-4xl">
+				<a
+					class="orbitron-regular tracking-widest text-black text-shadow-none hover:[text-shadow:_3px_3px_0px_rgba(5,213,255,0.5)] transition-all duration-300"
+					href="/internships">INTERNSHIPS</a
+				>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script define:vars={{ autoFade: autoFade }}>
+	let navbar = document.getElementById("navbar");
+
+	window.addEventListener("scroll", () => {
+		if (window.scrollY > 50) {
+			navbar?.classList.add("dark");
+		} else {
+			navbar?.classList.remove("dark");
+		}
+	});
+
+	if (autoFade) {
+		document.querySelector("#navbar").classList.remove("transition-all");
+		document.querySelector("#navbar").classList.remove("opacity-0");
+	}
+
+	let popup = document.querySelector("#popup");
+	let open_popup = document.querySelector("#open-popup");
+	let close_popups = document.querySelectorAll(".close-popup");
+
+	open_popup.addEventListener("click", () => {
+		popup?.classList.remove("hidden");
+
+		setTimeout(() => {
+			popup?.classList.remove("opacity-0");
+		}, 50);
+	});
+
+	Array.from(close_popups).map((close_popup) => {
+		close_popup.addEventListener("click", () => {
+			popup?.classList.add("opacity-0");
+
+			setTimeout(() => {
+				popup?.classList.add("hidden");
+			}, 350);
+		});
+	});
+</script>

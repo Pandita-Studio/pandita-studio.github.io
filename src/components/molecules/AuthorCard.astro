@@ -1,0 +1,67 @@
+---
+import type { InferEntrySchema } from "astro:content";
+import BadgeLink from "@components/atoms/BadgeLink.astro";
+import { ExternalLink } from "@lucide/astro";
+
+const author = Astro.props.author as InferEntrySchema<"authors">;
+---
+
+<div
+	class="w-full bg-black rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-center gap-6 border border-pink-900/50"
+>
+	<div class="shrink-0 flex-1/4 flex items-center justify-center">
+		{
+			author.picture ? (
+				<img
+					src={author.picture}
+					alt={author.name ?? "Author"}
+					class="w-20 h-20 rounded-full object-cover border-2 border-pink-500 shadow-lg shadow-pink-500"
+				/>
+			) : (
+				<div
+					class="w-20 h-20 rounded-full bg-pink-900 flex items-center justify-center text-xl font-semibold text-pink-200"
+					aria-hidden="true"
+				>
+					{(author.name ?? "U")
+						.split(" ")
+						.map((n) => n[0])
+						.join("")
+						.slice(0, 2)}
+				</div>
+			)
+		}
+	</div>
+
+	<div class="flex-3/4 min-w-0">
+		<h2 class="text-xl font-semibold text-pink-500">
+			<a href={`/author/${author.name}/1`} class="hover:underline"
+				>{author.name}</a
+			>
+		</h2>
+
+		<p class="mt-1 text-sm text-pink-200">
+			{author.bio}
+		</p>
+
+		<div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+			{
+				author.email && (
+					<BadgeLink href={`mailto:${author.email}`}>
+						{author.email}
+					</BadgeLink>
+				)
+			}
+
+			{
+				author.website && (
+					<BadgeLink href={author.website}>
+						<ExternalLink size={16} />
+						{author.website
+							.replace(/^https?:\/\//, "")
+							.replace(/\/$/, "")}
+					</BadgeLink>
+				)
+			}
+		</div>
+	</div>
+</div>

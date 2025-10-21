@@ -1,0 +1,33 @@
+---
+const { showAvatar, avatar, authorName, date, className } = Astro.props as {
+    showAvatar: boolean;
+    avatar: string;
+    authorName: string;
+    date: Date;
+    className: string
+};
+---
+
+<div class={`flex items-center gap-3 text-sm text-gray-700 ${className}`}>
+    {
+        () => {
+            if (showAvatar)
+                return (
+                    <img
+                        src={avatar}
+                        alt=""
+                        class="w-10 h-10 rounded-full flex-shrink-0"
+                    />
+                );
+        }
+    }
+    <div class="flex items-center gap-2">
+        <a
+            href={`/author/${authorName}/1`}
+            class="font-medium hover:underline">{authorName}</a
+        >
+        ·
+        <span class="text-gray-400">{date.toDateString()}</span
+        >
+    </div>
+</div>

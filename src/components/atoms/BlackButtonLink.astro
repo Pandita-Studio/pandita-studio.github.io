@@ -1,0 +1,12 @@
+---
+const { href, targetBlank } = Astro.props;
+---
+
+<a
+    href={href}
+    target={targetBlank ? '_blank' : undefined}
+    rel={targetBlank ? 'noopener noreferrer' : undefined}
+    class="flex items-center justify-center gap-3 text-white bg-black rounded py-2 px-4 opacity-80 shadow-pink-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100 hover:text-pink-500"
+>
+    <slot />
+</a>

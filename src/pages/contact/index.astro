@@ -1,0 +1,128 @@
+---
+import Main from "@layouts/Main.astro";
+import MainLink from "@components/atoms/MainLink.astro";
+import Navbar from "@components/molecules/Navbar.astro";
+import Footer from "@components/molecules/Footer.astro";
+import ContactForm from "@components/molecules/ContactForm";
+
+import { ExternalLink } from "@lucide/astro";
+---
+
+<Main title="Pandita | Contact">
+	<Navbar />
+
+	<div class="w-full mt-32 lg:mt-24 mb-24">
+		<div class="w-full flex items-center justify-center px-4">
+			<div class="w-full max-w-6xl">
+				<div class="w-full flex flex-col gap-6">
+					<header class="max-w-prose">
+						<nav
+							aria-label="Breadcrumb"
+							class="text-sm text-gray-600"
+						>
+							<a class="hover:underline" href="/#home">Home</a>
+							<span class="mx-2">/</span>
+							<span class="font-medium">Contact</span>
+						</nav>
+
+						<h1
+							class="mt-5 mb-5 orbitron-regular tracking-widest text-3xl lg:text-4xl text-center lg:text-left"
+						>
+							CONTACT
+						</h1>
+
+						<p class="text-gray-700 leading-relaxed text-lg">
+							Have questions or want to get in touch? Fill out the
+							form below, and we'll get back to you as soon as
+							possible. 📬
+						</p>
+					</header>
+
+					<section>
+						<hr class="border-gray-200 my-4" />
+
+						<div class="w-full lg:flex flex-row gap-6 items-start">
+							<div class="flex-1/2 w-full">
+								<div class="w-full mt-5">
+									
+									<ContactForm client:load />
+
+								</div>
+							</div>
+							<div
+								class="flex-1/2 flex flex-col gap-3 mt-10 lg:mt-0 text-justify"
+							>
+								<h2 class="mt-0 font-bold text-2xl">
+									Other contact methods
+								</h2>
+								<p class="text-gray-700 leading-relaxed">
+									You can also reach us through our social
+									media channels or by email at
+									<MainLink
+										href="mailto:contact@panditastudio.com"
+									>
+										contact@panditastudio.com
+									</MainLink>
+								</p>
+								<div>
+									<ul>
+										<li>
+											<MainLink
+												targetBlank
+												href="https://discord.gg/BWCDPR7FqZ"
+											>
+												<ExternalLink size={16} /> Discord
+											</MainLink>
+										</li>
+										<li>
+											<MainLink
+												targetBlank
+												href="https://www.facebook.com/PanditaVideogames"
+											>
+												<ExternalLink size={16} /> Facebook
+											</MainLink>
+										</li>
+										<li>
+											<MainLink
+												targetBlank
+												herf="https://www.instagram.com/panditastudio"
+											>
+												<ExternalLink size={16} /> Instagram
+											</MainLink>
+										</li>
+										<li>
+											<MainLink
+												targetBlank
+												href="https://www.linkedin.com/company/103470611/"
+											>
+												<ExternalLink size={16} /> LinkedIn
+											</MainLink>
+										</li>
+										<li>
+											<MainLink
+												targetBlank
+												href="https://www.youtube.com/@panditastudio"
+											>
+												<ExternalLink size={16} /> YouTube
+											</MainLink>
+										</li>
+										<li>
+											<MainLink
+												targetBlank
+												href="https://x.com/pandita_studio"
+											>
+												<ExternalLink size={16} /> Twitter
+											</MainLink>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<Footer />
+</Main>

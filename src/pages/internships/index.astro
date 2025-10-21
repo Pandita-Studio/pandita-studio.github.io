@@ -1,0 +1,149 @@
+---
+import Main from "@layouts/Main.astro";
+import BlackButtonLink from "@components/atoms/BlackButtonLink.astro";
+import Navbar from "@components/molecules/Navbar.astro";
+import Footer from "@components/molecules/Footer.astro";
+
+import Screenshot from "@assets/interships_screenshot.png";
+import UeLogo from "@assets/ue_logo.png";
+
+import { ExternalLink } from "@lucide/astro";
+---
+
+<Main title="Pandita | Internships">
+	<Navbar />
+
+	<div class="w-full mt-32 lg:mt-24 mb-12">
+		<div class="w-full flex items-center justify-center px-4">
+			<div class="w-full max-w-6xl">
+				<div class="w-full flex flex-col gap-6">
+					<header class="max-w-prose">
+						<nav aria-label="Breadcrumb" class="text-sm text-gray-600">
+							<a class="hover:underline" href="/#home">Home</a>
+							<span class="mx-2">/</span>
+							<span class="font-medium">Internships</span>
+						</nav>
+
+						<h1
+							class="mt-5 mb-5 orbitron-regular tracking-widest text-3xl lg:text-4xl text-center lg:text-left"
+						>
+							INTERNSHIPS
+						</h1>
+
+						<p class="text-gray-700 leading-relaxed text-lg">
+							We currently accept students from careers related to
+							video game development for internships. 💼
+						</p>
+					</header>
+
+					<section>
+						<hr class="border-gray-200 my-4" />
+
+						<div
+							class="w-full lg:flex flex-row-reverse gap-6 items-start"
+						>
+							<div class="flex-1/2 w-full">
+								<img
+									src={Screenshot.src}
+									alt="Pandita internships preview"
+									loading="lazy"
+									class="w-full max-w-xl rounded"
+								/>
+							</div>
+							<div class="flex-1/2 flex flex-col gap-3 mt-10 lg:mt-0 text-justify">
+								<h2 class="mt-0 font-bold text-2xl">
+									About our Internships
+								</h2>
+								<p class="text-gray-700 leading-relaxed">
+									At Pandita Studio, we believe in nurturing
+									the next generation of game developers. Our
+									internship program offers students hands-on
+									experience in a collaborative environment,
+									working alongside industry professionals on
+									real projects. Whether you're interested in
+									programming, 3D modeling, or digital
+									illustration, our internships provide
+									valuable insights into the game development
+									process.
+								</p>
+								<h2 class="mt-6 font-bold text-2xl">
+									Student Opportunities
+								</h2>
+								<ul
+									class="space-y-3 mb-6 leading-relaxed text-gray-700"
+								>
+									<li class="flex items-start gap-3">
+										<span>💻</span>
+										<span>
+											<strong>Programming (Godot)</strong>
+											— GDScript, engine architecture and gameplay
+											systems.
+										</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span>🧊</span>
+										<span>
+											<strong
+												>3D Modeling (Blender)</strong
+											> — modeling, texturing and rendering
+											workflows.
+										</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span>🎨</span>
+										<span>
+											<strong>Digital Illustration</strong
+											> — concept art, UI assets and promotional
+											art.
+										</span>
+									</li>
+								</ul>
+								<h2 class="mt-6 font-bold text-2xl">
+									Partnerships
+								</h2>
+								<p
+									class="text-gray-700 leading-relaxed text-lg"
+								>
+									We are open to partnerships with
+									universities and educational institutions to
+									provide internship opportunities for their
+									students.
+								</p>
+								<div>
+									<a
+										href="https://universidadeuropea.com/en/about-ue/madrid/"
+									>
+										<img
+											src={UeLogo.src}
+											alt="Universidad Europea logo"
+											loading="lazy"
+											class="w-44 mt-4"
+										/>
+									</a>
+								</div>
+								<h2 class="mt-6 font-bold text-2xl">
+									Are you interested?
+								</h2>
+								<p
+									class="text-gray-700 leading-relaxed text-lg"
+								>
+									If you're a student looking for an
+									internship, or a professor seeking
+									opportunities for your students, we'd love
+									to hear from you.
+								</p>
+								<div>
+									<BlackButtonLink href="/contact">
+										<ExternalLink /> CONTACT US
+									</BlackButtonLink>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+</Main>
+
+<Footer />

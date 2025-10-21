@@ -1,0 +1,153 @@
+---
+import Main from "@layouts/Main.astro";
+import Prose from "@components/atoms/Prose.astro";
+import Navbar from "@components/molecules/Navbar.astro";
+import Footer from "@components/molecules/Footer.astro";
+import WrittenByDisplay from "@components/molecules/WrittenByDisplay.astro";
+
+import SocialWidgets from "@components/molecules/SocialWidgets.astro";
+
+import { getCollection, getEntry, render } from "astro:content";
+import AuthorCard from "@components/molecules/AuthorCard.astro";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("blog");
+	return posts.map((post) => ({
+		params: { id: post.slug },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const author = await getEntry(post.data.author);
+---
+
+<Main
+	title={post.data.title}
+	description={post.data.excerpt}
+	image={post.data.image}
+	creator={`@${author.id}`}
+>
+	<Navbar />
+
+	<main class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 mt-15">
+		<div class="mx-auto w-full max-w-3xl">
+			<header class="mb-6">
+				<nav aria-label="Breadcrumb" class="text-sm text-gray-600">
+					<a class="hover:underline" href="/#home">Home</a>
+					<span class="mx-2">/</span>
+					<a class="hover:underline" href="/blog/1">Blog</a>
+					<span class="mx-2">/</span>
+					<span class="font-medium">{post.data.title}</span>
+				</nav>
+			</header>
+
+			<article class="overflow-hidden">
+				<figure class="w-full">
+					<img
+						src={post.data.image}
+						alt={`${post.data.title} cover image.`}
+						class="w-full h-64 sm:h-96 object-cover rounded"
+					/>
+				</figure>
+
+				<div class="py-6">
+					<h1
+						class="text-2xl sm:text-3xl font-extrabold leading-tight"
+					>
+						{post.data.title}
+					</h1>
+
+					<WrittenByDisplay
+						showAvatar
+						avatar={author.data.picture}
+						authorName={author.data.name}
+						date={post.data.publishDate}
+						className="mt-4"
+					/>
+
+					<hr class="my-8 border-t border-gray-200" />
+
+					<section class="prose max-w-none">
+						<Prose>
+							<Content />
+						</Prose>
+					</section>
+
+					<nav
+						class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6 items-start"
+					>
+						<div class="justify-self-start">
+							{
+								async () => {
+									if (post.data.prev) {
+										const entry = await getEntry(
+											"blog",
+											post.data.prev,
+										);
+
+										if (!entry) return;
+
+										return (
+											<div class="w-full">
+												<div class="text-sm text-pink-300">
+													Prev
+												</div>
+												<a
+													class="text-pink-500 hover:underline"
+													href={`/blog/p/${entry.slug}`}
+												>
+													← {entry.data.title}
+												</a>
+											</div>
+										);
+									}
+								}
+							}
+						</div>
+						<div class="justify-self-end text-right">
+							{
+								async () => {
+									if (post.data.next) {
+										const entry = await getEntry(
+											"blog",
+											post.data.next,
+										);
+
+										if (!entry) return;
+
+										return (
+											<div class="w-full">
+												<div class="text-sm text-pink-300">
+													Next
+												</div>
+												<a
+													class="text-pink-500 hover:underline"
+													href={`/blog/p/${entry.slug}`}
+												>
+													{entry.data.title} →
+												</a>
+											</div>
+										);
+									}
+								}
+							}
+						</div>
+					</nav>
+
+					<div class="mt-12">
+						<AuthorCard author={author.data} />
+					</div>
+
+					<div class="mt-6">
+						<SocialWidgets />
+					</div>
+				</div>
+			</article>
+		</div>
+	</main>
+
+	<Footer />
+</Main>

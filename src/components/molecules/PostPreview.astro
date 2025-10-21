@@ -1,0 +1,47 @@
+---
+import { getEntry } from "astro:content";
+import MainLink from "@components/atoms/MainLink.astro";
+import WrittenByDisplay from "./WrittenByDisplay.astro";
+
+const { postSlug } = Astro.props;
+const post = await getEntry("blog", postSlug);
+
+if (!post) {
+	throw new Error(`Could not find blog post ${postSlug}`);
+}
+
+const author = await getEntry(post.data.author);
+---
+
+<div class="w-full min-md:flex flex-row gap-4 max-lg:mb-10">
+	<img
+		src={post.data.image}
+		alt={`${post.data.title} cover image.`}
+		class="w-full min-md:max-w-3xs rounded object-cover aspect-video"
+	/>
+
+	<div class="flex flex-col gap-2">
+		<div>
+			<div class="text-lg font-bold">
+				{post.data.title}
+			</div>
+			<WrittenByDisplay
+				authorName={author.data.name}
+				date={post.data.publishDate}
+				className="text-sm"
+			/>
+		</div>
+
+		<div>
+			<p class="text-gray-700 leading-relaxed">
+				{post.data.excerpt}
+			</p>
+		</div>
+
+		<div>
+			<MainLink href={`/blog/p/${post.slug}`}>
+				<i>continue reading →</i>
+			</MainLink>
+		</div>
+	</div>
+</div>
