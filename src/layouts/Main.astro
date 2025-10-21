@@ -2,16 +2,19 @@
 import "@styles/global.css";
 import { SEO } from "astro-seo";
 
-const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? "http://localhost:4321";
+const canonicalUrl = Astro.props.canonicalUrl ?? import.meta.env.PUBLIC_SITE_URL ?? null;
 
 const title = Astro.props.title ?? "Pandita | Videogames Studio";
 const description =
 	Astro.props.description ??
 	"Mexican indie game studio creating anime-inspired video games with unique storytelling, artistic style, and heartfelt passion.";
 const type = Astro.props.type ?? "website";
-
-const rawImage = Astro.props.image ?? "/pandita.png";
-const image = rawImage.startsWith("http") ? rawImage : `${siteUrl.replace(/\/$/, "")}${rawImage.startsWith("/") ? "" : "/"}${rawImage}`;
+const imagePath = Astro.props.image ?? "/pandita.png";
+const image = /^(?:https?:|data:|\/\/)/i.test(imagePath)
+	? imagePath
+	: canonicalUrl
+	? new URL(imagePath, canonicalUrl).toString()
+	: imagePath;
 const creator = Astro.props.creator ?? "@panditastudio";
 ---
 
@@ -21,6 +24,7 @@ const creator = Astro.props.creator ?? "@panditastudio";
 		<SEO
 			title={title}
 			description={description}
+			canonical={canonicalUrl}
 			openGraph={{
 				basic: {
 					title: title,
