@@ -37,12 +37,12 @@ posts.forEach((post) => {
                 
                 <header>
                     <h1 class="text-3xl font-bold mb-2">Blog Tags</h1>
-                    <p class="text-gray-600 mb-6">
+                    <p class="text-gray-600">
                         Browse blog posts by tags.
                     </p>
                 </header>
 
-                <div class="w-full flex flex-wrap gap-2 text-2xl pt-20">
+                <div class="w-full flex flex-wrap gap-2 text-2xl pt-4">
                     {tags.map((tag) => (
                         <MainLink href={`/blog/tags/${escapeTag(tag)}/1`}>
                             #{tag}

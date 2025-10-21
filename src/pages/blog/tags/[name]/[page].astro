@@ -85,7 +85,7 @@ const { tag } = Astro.props as { tag: string };
                 <Paginator 
                     currentPage={page.currentPage} 
                     totalPages={page.lastPage} 
-                    baseUrl={`/blog/tag/${escapeTag(tag)}`}
+                    baseUrl={`/blog/tags/${escapeTag(tag)}`}
                 />
 
                 <hr class="border-gray-200 mt-6" />

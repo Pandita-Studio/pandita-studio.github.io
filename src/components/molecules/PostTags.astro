@@ -2,7 +2,7 @@
 import BadgeLink from "@components/atoms/BadgeLink.astro";
 import { escapeTag } from "@lib/string";
 
-const { tags } = Astro.props as { tags: string[] };
+const { tags = [] } = Astro.props as { tags?: string[] };
 ---
 
 <div class="w-full flex gap-2 text-sm mb-4">
