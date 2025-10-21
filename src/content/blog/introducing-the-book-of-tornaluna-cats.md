@@ -7,6 +7,9 @@ author: edo
 image: /image/tanya_cg_hd.png
 prev: porcelana-2-years-anniversary
 next: join-the-closed-alpha-test-of-tornaluna-cats
+tags:
+    - Gamedev
+    - Tornaluna Cats
 ---
 
 A few days ago, we wrapped up development on our latest game, **Rockstar Idol** — you can check out the details [here](https://www.kickstarter.com/projects/edo0xff/rockstar-idol-relaunch/posts/4300304).  
