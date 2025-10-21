@@ -8,7 +8,7 @@ image: /image/tanya_cg_hd.png
 prev: porcelana-2-years-anniversary
 next: join-the-closed-alpha-test-of-tornaluna-cats
 tags:
-    - Gamedev
+    - News
     - Tornaluna Cats
 ---
 
