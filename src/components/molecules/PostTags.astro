@@ -8,7 +8,7 @@ const { tags } = Astro.props as { tags: string[] };
 <div class="w-full flex gap-2 text-sm mb-4">
 
     {tags.map((tag) => (
-        <BadgeLink key={tag} href={`/blog/tag/${escapeTag(tag)}`}>
+        <BadgeLink key={tag} href={`/blog/tags/${escapeTag(tag)}/1`}>
             {tag}
         </BadgeLink>
     ))}

@@ -1,0 +1,57 @@
+---
+import Main from "@layouts/Main.astro";
+import Navbar from "@components/molecules/Navbar.astro";
+import Footer from "@components/molecules/Footer.astro";
+import MainLink from "@components/atoms/MainLink.astro";
+
+import { getCollection } from "astro:content";
+import { escapeTag } from "@lib/string";
+
+const tags: string[] = [];
+const posts = await getCollection("blog");
+
+posts.forEach((post) => {
+    if (!post.data.tags) return;
+
+    post.data.tags.forEach((tag) => {
+        if (!tags.includes(tag)) {
+            tags.push(tag);
+        }
+    });
+});
+---
+
+<Main>
+    <Navbar />
+
+    <div class="w-full min-h-screen mt-24 lg:mt-20">
+        <div class="w-full flex items-start justify-center">
+            <div class="w-full p-6 max-w-4xl">
+                <nav aria-label="Breadcrumb" class="text-sm text-gray-600 mb-4">
+                    <a class="hover:underline" href="/#home">Home</a>
+                    <span class="mx-2">/</span>
+                    <a class="hover:underline" href="/blog/1">Blog</a>
+                    <span class="mx-2">/</span>
+                    <span class="font-medium">Tags</span>
+                </nav>
+                
+                <header>
+                    <h1 class="text-3xl font-bold mb-2">Blog Tags</h1>
+                    <p class="text-gray-600 mb-6">
+                        Browse blog posts by tags.
+                    </p>
+                </header>
+
+                <div class="w-full flex flex-wrap gap-4 text-2xl pt-20">
+                    {tags.map((tag) => (
+                        <MainLink href={`/blog/tags/${escapeTag(tag)}/1`}>
+                            #{tag}
+                        </MainLink>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <Footer />
+</Main>
