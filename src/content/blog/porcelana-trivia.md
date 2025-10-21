@@ -6,6 +6,9 @@ publishDate: 2023-07-26
 author: edo
 image: /image/porcelana_cover.png
 next: porcelana-2-years-anniversary
+tags:
+    - News
+    - Porcelana
 ---
 
 Hello, dear readers,

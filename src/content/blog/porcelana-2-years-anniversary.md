@@ -7,6 +7,9 @@ author: edo
 image: /image/isabella_2_years.webp
 prev: porcelana-trivia
 next: introducing-the-book-of-tornaluna-cats
+tags:
+    - News
+    - Porcelana
 ---
 
 Exactly two years ago, **Porcelana** was released on Steam — two incredible years full of growth, creativity, and unforgettable moments here at **Pandita Studio**.  

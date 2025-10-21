@@ -1,0 +1,60 @@
+---
+const { currentPage, totalPages, baseUrl } = Astro.props;
+
+const generatePageLinks = (i: number) => {
+    return `${baseUrl}/${i}`;
+}
+
+const start = Math.max(1, currentPage - 2);
+const end = Math.min(totalPages, currentPage + 2);
+const pages = [];
+
+for (let i = start; i <= end; i++) {
+    pages.push({
+        number: i,
+        url: generatePageLinks(i),
+        isActive: i === currentPage
+    });
+}
+
+const prevPage: string | null = currentPage > 1 ? generatePageLinks(currentPage - 1) : null;
+const nextPage: string | null = currentPage < totalPages ? generatePageLinks(currentPage + 1) : null;
+---
+
+<nav class="flex flex-wrap items-center gap-2 mt-6" aria-label="Pagination">
+    {prevPage && (
+        <a
+            href={prevPage}
+            class="px-3 py-1 rounded border transition-colors duration-200 bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+        >
+            Previous
+        </a>
+    )}
+
+    {pages.map((page) => (
+        <a
+            href={page.url}
+            class={`px-3 py-1 rounded border transition-colors duration-200 ${
+                page.isActive ? "bg-pink-500 text-white border-pink-500" : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+            }`}
+        >
+            {page.number}
+        </a>
+    ))}
+
+    {nextPage && (
+        <a
+            href={nextPage}
+            class="px-3 py-1 rounded border transition-colors duration-200 bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
+        >
+            Next
+        </a>
+    )}
+
+</nav>
+
+<div class="mt-1">
+    <p class="text-sm text-gray-500">
+        Page {currentPage} of {totalPages} 
+    </p>
+</div>

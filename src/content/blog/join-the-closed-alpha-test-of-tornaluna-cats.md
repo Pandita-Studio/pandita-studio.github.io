@@ -7,6 +7,9 @@ author: edo
 image: /image/tornaluna_cats_menu.png
 prev: introducing-the-book-of-tornaluna-cats
 next: creating-tanya-character-sprite-design-and-rigging
+tags:
+    - Gamedev
+    - Tornaluna Cats
 ---
 I’m writing to share an exciting update on the development of **The Book of Tornaluna Cats** — and some great news! Everything is ready for us to begin the **closed alpha testing phase**. 🥳
 

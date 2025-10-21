@@ -6,6 +6,9 @@ publishDate: 2025-02-27
 author: edo
 image: /image/tanya_rig.png
 prev: join-the-closed-alpha-test-of-tornaluna-cats
+tags:
+    - Gamedev
+    - Tornaluna Cats
 ---
 
 I’d like to share some progress on **The Book of Tornaluna Cats**!  
