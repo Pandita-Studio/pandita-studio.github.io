@@ -1,4 +1,6 @@
 import { useState, useMemo, useRef } from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 function Label(props) {
     return (
@@ -81,7 +83,17 @@ export default function ContactForm() {
         }
 
         return <SubmitButton onClick={handleFormSubmit} />;
-    }, [loading])
+    }, [loading]);
+
+    function showAlert(message, success = true) {
+        const MySwal = withReactContent(Swal);
+        MySwal.fire({
+            text: message,
+            confirmButtonText: "OK",
+            confirmButtonColor: "#f6339a",
+            icon: success ? "success" : "error"
+        });
+    }
 
     function handleFormSubmit(e) {
         e.preventDefault();
@@ -91,13 +103,13 @@ export default function ContactForm() {
         const subject = subjectRef.current.value;
 
         if (name === null || name === "") {
-            alert("Please enter your name!");
+            showAlert("Please enter your name!", false);
             nameRef.current.focus();
             return;
         }
 
         if (email === null || email === "") {
-            alert("Please enter your email!");
+            showAlert("Please enter your email!", false);
             emailRef.current.focus();
             return;
         }
@@ -114,18 +126,18 @@ export default function ContactForm() {
         })
         .then((response) => {
             if (response.ok) {
-                alert("We've received your contact request and will reach out to you soon!");
+                showAlert("We've received your contact request and will reach out to you soon!");
                 nameRef.current.value = "";
                 emailRef.current.value = "";
                 subjectRef.current.value = "custom assets";
                 setSubmitted(true);
             } else {
-                alert("Oops — something went wrong. Try again in a moment.");
+                showAlert("Oops — something went wrong. Try again in a moment.", false);
             }
         })
         .catch((error) => {
             console.error("Error submitting form:", error);
-            alert("Oops — something went wrong. Try again in a moment.");
+            showAlert("Oops — something went wrong. Try again in a moment.", false);
         })
         .finally(() => {
             setLoading(false);
