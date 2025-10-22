@@ -1,3 +1,4 @@
+import { set } from "astro:schema";
 import { useState, useMemo, useRef } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -85,13 +86,17 @@ export default function ContactForm() {
         return <SubmitButton onClick={handleFormSubmit} />;
     }, [loading]);
 
-    function showAlert(message, success = true) {
+    function showAlert(message, success = true, callback = null) {
         const MySwal = withReactContent(Swal);
         MySwal.fire({
             text: message,
             confirmButtonText: "OK",
             confirmButtonColor: "#f6339a",
             icon: success ? "success" : "error"
+        }).then((result) => {
+            if (result.isConfirmed && callback) {
+                setTimeout(callback, 500);
+            }
         });
     }
 
@@ -103,14 +108,16 @@ export default function ContactForm() {
         const subject = subjectRef.current.value;
 
         if (name === null || name === "") {
-            showAlert("Please enter your name!", false);
-            nameRef.current.focus();
+            showAlert("Please enter your name!", false, () => {
+                nameRef.current.focus();
+            });
             return;
         }
 
         if (email === null || email === "") {
-            showAlert("Please enter your email!", false);
-            emailRef.current.focus();
+            showAlert("Please enter your email!", false, () => {
+                emailRef.current.focus();
+            });
             return;
         }
 
