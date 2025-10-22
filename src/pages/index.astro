@@ -28,6 +28,8 @@ import CharactersScreenshot from "@assets/characters_screenshot.png";
 import CustomScreenshot from "@assets/custom_screenshot.png";
 
 import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
+
+import { Image } from "astro:assets";
 ---
 
 <Main>
@@ -90,14 +92,14 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 							>
 								<div>
 									<div class="w-full flex justify-center">
-										<img
-											class="absolute bottom-0 max-h-screen z-[-1]"
-											src={IsabellaShy.src}
+										<Image
+											class="absolute bottom-0 object-contain max-h-screen z-[-1]"
+											src={IsabellaShy}
 											alt="Isabella sprite"
 										/>
-										<img
-											class="absolute bottom-0 max-h-screen z-[-1]"
-											src={IsabellaSeeing.src}
+										<Image
+											class="absolute bottom-0 object-contain max-h-screen z-[-1]"
+											src={IsabellaSeeing}
 											alt="Isabella sprite"
 											id="isabella-sprite"
 										/>
@@ -111,9 +113,9 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 									<div
 										class="w-full flex justify-center lg:justify-start"
 									>
-										<img
-											class="w-full max-w-80 h-fit"
-											src={PorcelanaLogo.src}
+										<Image
+											class="w-full max-w-80 h-fit object-contain"
+											src={PorcelanaLogo}
 											alt="Porcelana"
 										/>
 									</div>
@@ -137,6 +139,7 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 									>
 										<a
 											target="_blank"
+											rel="noopener noreferrer"
 											href="https://store.steampowered.com/app/1788840/Porcelana/"
 											class="flex items-center gap-3 text-pink-400 bg-white rounded py-2 px-4 opacity-80 shadow-pink-400 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
 										>
@@ -145,6 +148,7 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 
 										<a
 											target="_blank"
+											rel="noopener noreferrer"
 											href="https://panditastudio.itch.io/porcelana"
 											class="flex items-center gap-3 text-pink-400 bg-white rounded py-2 px-4 opacity-80 shadow-pink-400 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
 										>
@@ -174,9 +178,9 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 									<div
 										class="w-full flex justify-center lg:justify-end"
 									>
-										<img
-											class="w-full max-w-80 h-fit"
-											src={RockstarIdolLogo.src}
+										<Image
+											class="w-full max-w-80 h-fit object-contain"
+											src={RockstarIdolLogo}
 											alt="Rockstar Idol logo"
 										/>
 									</div>
@@ -197,6 +201,7 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 									>
 										<a
 											target="_blank"
+											rel="noopener noreferrer"
 											href="https://panditastudio.itch.io/rockstar-idol"
 											class="flex items-center gap-3 text-indigo-500 bg-white rounded py-2 px-4 opacity-80 shadow-indigo-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
 										>
@@ -207,14 +212,14 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 
 								<div>
 									<div class="w-full flex justify-center">
-										<img
-											class="absolute bottom-0 max-h-[95%] z-[-1]"
-											src={Hitori.src}
+										<Image
+											class="absolute bottom-0 max-h-[95%] z-[-1] object-contain"
+											src={Hitori}
 											alt="Hitori sprite"
 										/>
-										<img
-											class="absolute top-0 bottom-0 right-0 left-0 m-auto z-[1]"
-											src={PlayerKun.src}
+										<Image
+											class="absolute top-0 bottom-0 right-0 left-0 m-auto z-[1] object-contain"
+											src={PlayerKun}
 											alt="PlayerKun"
 											id="player-kun"
 										/>
@@ -237,21 +242,21 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 							>
 								<div>
 									<div class="w-full flex justify-center">
-										<img
-											class="absolute bottom-0 max-h-[95%] z-[-3] opacity-0"
-											src={Cecilia.src}
+										<Image
+											class="absolute bottom-0 max-h-[95%] z-[-3] opacity-0 object-contain"
+											src={Cecilia}
 											alt="Cecilia sprite"
 											id="cecilia-sprite"
 										/>
-										<img
-											class="absolute bottom-0 max-h-[95%] z-[-2] opacity-0"
-											src={Estrella.src}
+										<Image
+											class="absolute bottom-0 max-h-[95%] z-[-2] opacity-0 object-contain"
+											src={Estrella}
 											alt="Estrella sprite"
 											id="estrella-sprite"
 										/>
-										<img
-											class="absolute bottom-0 max-h-[95%] z-[-1]"
-											src={Ruka.src}
+										<Image
+											class="absolute bottom-0 max-h-[95%] z-[-1] object-contain"
+											src={Ruka}
 											alt="Ruka sprite"
 										/>
 									</div>
@@ -264,9 +269,9 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 									<div
 										class="w-full flex justify-center lg:justify-start"
 									>
-										<img
-											class="w-full max-w-80 h-fit"
-											src={RockstarIdolELogo.src}
+										<Image
+											class="w-full max-w-80 h-fit object-contain"
+											src={RockstarIdolELogo}
 											alt="Rockstar Idol extended logo"
 										/>
 									</div>
@@ -288,6 +293,7 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 									>
 										<a
 											target="_blank"
+											rel="noopener noreferrer"
 											href="https://panditastudio.itch.io/rockstar-idol-extended-version"
 											class="flex items-center gap-3 text-red-500 bg-white rounded py-2 px-4 opacity-80 shadow-red-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
 										>
@@ -313,9 +319,9 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 								id="game-4-logo"
 							>
 								<div class="w-full flex justify-center">
-									<img
-										class="w-full max-w-80 h-fit"
-										src={CatsLogo.src}
+									<Image
+										class="w-full max-w-80 h-fit object-contain"
+										src={CatsLogo}
 										alt="Tornaluna Cats Logo"
 									/>
 								</div>
@@ -333,6 +339,7 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 								>
 									<a
 										target="_blank"
+										rel="noopener noreferrer"
 										href="https://panditastudio.itch.io/the-book-of-tornaluna-cats-demo"
 										class="flex items-center gap-3 text-indigo-500 bg-white rounded py-2 px-4 opacity-80 shadow-indigo-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
 									>
@@ -341,6 +348,7 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 
 									<a
 										target="_blank"
+										rel="noopener noreferrer"
 										href="https://www.kickstarter.com/projects/edo0xff/the-book-of-tornaluna-cats"
 										class="flex items-center gap-3 text-indigo-500 bg-white rounded py-2 px-4 opacity-80 shadow-indigo-500 shadow-none transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100"
 									>
@@ -382,9 +390,9 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 								</div>
 							</div>
 							<div class="flex-1/2 mt-4 lg:mt-0">
-								<img
-									class="lg:max-w-3xl"
-									src={CharactersScreenshot.src}
+								<Image
+									class="lg:max-w-3xl object-contain"
+									src={CharactersScreenshot}
 									alt="Characters screenshot"
 								/>
 							</div>
@@ -416,9 +424,9 @@ import { Gamepad2, Store, Rss, ExternalLink } from "@lucide/astro";
 								</div>
 							</div>
 							<div class="flex-1/2 mt-4 lg:mt-0">
-								<img
-									class="lg:max-w-3xl"
-									src={CustomScreenshot.src}
+								<Image
+									class="lg:max-w-3xl object-contain"
+									src={CustomScreenshot}
 									alt="Characters screenshot"
 								/>
 							</div>
