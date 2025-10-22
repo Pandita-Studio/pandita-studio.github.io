@@ -2,14 +2,7 @@
 import "@styles/global.css";
 import { SEO } from "astro-seo";
 
-/*** 
- * We area having issues with SSL certificates, so github actions enviroment do not set https correctly
- * that's why we have to set the baseurl manually :(
- */
-const isDevelopment = import.meta.env.MODE === "development";
-const baseurl = isDevelopment
-	? Astro.url.origin
-	: "https://panditastudio.com";
+const baseurl = Astro.url.origin;
 const canonical = new URL(Astro.url.pathname, baseurl).toString();
 
 const title = Astro.props.title ?? "Pandita | Videogames Studio";
