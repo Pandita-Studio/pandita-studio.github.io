@@ -2,7 +2,11 @@
 import "@styles/global.css";
 import { SEO } from "astro-seo";
 
-const baseurl = Astro.url.origin;
+const isDev = import.meta.env.DEV;
+
+const baseurl = isDev
+	? Astro.url.origin
+	: "https://panditastudio.com";
 const canonical = new URL(Astro.url.pathname, baseurl).toString();
 
 const title = Astro.props.title ?? "Pandita | Videogames Studio";
