@@ -51,6 +51,7 @@ const author = await getEntry(post.data.author);
 						src={post.data.image}
 						alt={`${post.data.title} cover image.`}
 						class="w-full h-64 sm:h-96 object-cover rounded"
+						loading="lazy"
 					/>
 				</figure>
 

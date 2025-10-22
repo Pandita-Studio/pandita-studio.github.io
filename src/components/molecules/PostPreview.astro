@@ -18,6 +18,7 @@ const author = await getEntry(post.data.author);
 		src={post.data.image}
 		alt={`${post.data.title} cover image.`}
 		class="w-full min-md:max-w-3xs rounded object-cover aspect-video"
+		loading="lazy"
 	/>
 
 	<div class="flex flex-col gap-2">
