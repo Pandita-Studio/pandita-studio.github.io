@@ -8,6 +8,7 @@ import Screenshot from "@assets/interships_screenshot.png";
 import UeLogo from "@assets/ue_logo.png";
 
 import { ExternalLink } from "@lucide/astro";
+import { Image } from "astro:assets";
 ---
 
 <Main title="Pandita | Internships">
@@ -43,11 +44,11 @@ import { ExternalLink } from "@lucide/astro";
 							class="w-full lg:flex flex-row-reverse gap-6 items-start"
 						>
 							<div class="flex-1/2 w-full">
-								<img
-									src={Screenshot.src}
+								<Image
+									src={Screenshot}
 									alt="Pandita internships preview"
 									loading="lazy"
-									class="w-full max-w-xl rounded"
+									class="w-full max-w-xl rounded object-contain"
 								/>
 							</div>
 							<div class="flex-1/2 flex flex-col gap-3 mt-10 lg:mt-0 text-justify">
@@ -113,11 +114,11 @@ import { ExternalLink } from "@lucide/astro";
 									<a
 										href="https://universidadeuropea.com/en/about-ue/madrid/"
 									>
-										<img
-											src={UeLogo.src}
+										<Image
+											src={UeLogo}
 											alt="Universidad Europea logo"
 											loading="lazy"
-											class="w-44 mt-4"
+											class="w-44 mt-4 object-contain"
 										/>
 									</a>
 								</div>

@@ -2,7 +2,11 @@
 import "@styles/global.css";
 import { SEO } from "astro-seo";
 
-const baseurl = Astro.url.origin;
+const isDev = import.meta.env.DEV;
+
+const baseurl = isDev
+	? Astro.url.origin
+	: import.meta.env.SITE_URL || "https://panditastudio.com";
 const canonical = new URL(Astro.url.pathname, baseurl).toString();
 
 const title = Astro.props.title ?? "Pandita | Videogames Studio";
@@ -57,6 +61,12 @@ const image = new URL(imagePath, baseurl).toString();
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Press+Start+2P&display=swap"
+			rel="stylesheet"
+		/>
 		<meta name="generator" content={Astro.generator} />
 	</head>
 	<body class="bg-white dark:bg-[#040104]">
@@ -65,8 +75,6 @@ const image = new URL(imagePath, baseurl).toString();
 </html>
 
 <style is:global>
-	@import url("https://fonts.googleapis.com/css2?family=Orbitron&family=Press+Start+2P&display=swap");
-
 	html,
 	body {
 		margin: 0;

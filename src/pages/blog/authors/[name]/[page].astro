@@ -72,6 +72,7 @@ const { author } = Astro.props as { author: InferEntrySchema<"authors"> };
 									src={author.picture}
 									alt={`${author.name} avatar`}
 									class="w-24 h-24 rounded-full object-cover flex-shrink-0"
+									loading="lazy"
 								/>
 							) : (
 								<div class="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-lg">

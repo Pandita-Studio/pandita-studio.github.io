@@ -17,6 +17,7 @@ const { showAvatar, avatar, authorName, date, className } = Astro.props as {
                         src={avatar}
                         alt=""
                         class="w-10 h-10 rounded-full flex-shrink-0"
+                        loading="lazy"
                     />
                 );
         }
