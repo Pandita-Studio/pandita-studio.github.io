@@ -6,7 +6,7 @@ const isDev = import.meta.env.DEV;
 
 const baseurl = isDev
 	? Astro.url.origin
-	: "https://panditastudio.com";
+	: import.meta.env.SITE_URL || "https://panditastudio.com";
 const canonical = new URL(Astro.url.pathname, baseurl).toString();
 
 const title = Astro.props.title ?? "Pandita | Videogames Studio";
