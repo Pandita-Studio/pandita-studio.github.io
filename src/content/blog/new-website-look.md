@@ -6,6 +6,7 @@ publishDate: 2025-10-22
 author: edo
 image: /image/new_website_look.png
 prev: creating-tanya-character-sprite-design-and-rigging
+next: simple-scene-switcher-in-godot
 tags:
     - News
     - General
